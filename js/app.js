@@ -8,83 +8,27 @@ var WHATSAPP_NUMBER = '573132091591';
 var PRODUCTS = [
   { id: 'halo', name: 'Anillo Halo Esmeralda', category: 'Anillos', price: '$4.850.000',
     desc: 'Oro blanco 18k con esmeralda colombiana talla ovalada de 0.9ct, rodeada de un halo de diamantes naturales.',
-    shape: 'ring' },
+    img: 'assets/products/ring-halo.jpg' },
   { id: 'solitario', name: 'Anillo Solitario Andes', category: 'Anillos', price: '$3.200.000',
     desc: 'Diseño clásico en oro amarillo 18k con esmeralda central de corte esmeralda. Elegancia atemporal.',
-    shape: 'ring' },
+    img: 'assets/products/ring-solitario.jpg' },
   { id: 'gota', name: 'Aretes Gota Esmeralda', category: 'Aretes', price: '$2.650.000',
     desc: 'Aretes colgantes en oro blanco con esmeraldas en talla gota y contorno de micro pavé de diamantes.',
-    shape: 'earring' },
+    img: 'assets/products/earrings-gota.jpg' },
   { id: 'cascada', name: 'Collar Cascada Esmeralda', category: 'Collares', price: '$5.900.000',
     desc: 'Oro blanco 18k con cascada de esmeraldas colombianas en talla marquís, cadena ajustable de 40 a 45cm.',
-    shape: 'necklace' },
+    img: 'assets/products/necklace-cascada.jpg' },
   { id: 'suelta', name: 'Esmeralda Suelta Premium', category: 'Esmeraldas Sueltas', price: '$6.500.000',
     desc: 'Esmeralda colombiana en bruto de origen Muzo, 1.2ct, con certificado de autenticidad.',
-    shape: 'loose' },
+    img: 'assets/products/gem-suelta.jpg' },
   { id: 'pulsera', name: 'Pulsera Línea Esmeralda', category: 'Pulseras', price: '$2.250.000',
     desc: 'Oro blanco 18k con línea de esmeraldas talla baguette. Cierre de seguridad con broche oculto.',
-    shape: 'bracelet' }
+    img: 'assets/products/bracelet-linea.jpg' }
 ];
 
-/* ---------- render de joya en SVG (sin fotografía real) ---------- */
-var jewelUid = 0;
-function jewelSVG(shape) {
-  jewelUid += 1;
-  var stoneId = 'stone' + jewelUid;
-  var metalId = 'metal' + jewelUid;
-  var softId = 'soft' + jewelUid;
-
-  var defs =
-    '<defs>' +
-      '<radialGradient id="' + stoneId + '" cx="35%" cy="28%" r="80%">' +
-        '<stop offset="0%" stop-color="#6fe0ae"/>' +
-        '<stop offset="45%" stop-color="#1E8768"/>' +
-        '<stop offset="100%" stop-color="#08412C"/>' +
-      '</radialGradient>' +
-      '<linearGradient id="' + metalId + '" x1="0" y1="0" x2="1" y2="1">' +
-        '<stop offset="0%" stop-color="#F1DFB4"/>' +
-        '<stop offset="50%" stop-color="#B99951"/>' +
-        '<stop offset="100%" stop-color="#8a713a"/>' +
-      '</linearGradient>' +
-      '<filter id="' + softId + '" x="-40%" y="-40%" width="180%" height="180%">' +
-        '<feGaussianBlur stdDeviation="2.2"/>' +
-      '</filter>' +
-    '</defs>';
-
-  var floor = '<ellipse cx="100" cy="176" rx="52" ry="9" fill="#08412C" opacity="0.10" filter="url(#' + softId + ')"/>';
-
-  var gem =
-    '<polygon points="100,58 116,70 116,96 100,108 84,96 84,70" fill="url(#' + stoneId + ')" stroke="#fff" stroke-width="1" opacity="0.97"/>' +
-    '<polygon points="100,58 116,70 100,80 84,70" fill="#bdf3d9" opacity="0.55"/>';
-
-  var body = '';
-  if (shape === 'ring') {
-    body =
-      '<circle cx="100" cy="120" r="46" fill="none" stroke="url(#' + metalId + ')" stroke-width="13"/>' +
-      gem;
-  } else if (shape === 'necklace') {
-    body =
-      '<path d="M46 46 Q100 128 154 46" fill="none" stroke="url(#' + metalId + ')" stroke-width="4.5" stroke-linecap="round"/>' +
-      '<g transform="translate(0,30)">' + gem + '</g>';
-  } else if (shape === 'earring') {
-    body =
-      '<circle cx="70" cy="52" r="6.5" fill="url(#' + metalId + ')"/><line x1="70" y1="58" x2="70" y2="74" stroke="#B99951" stroke-width="2.4"/>' +
-      '<g transform="translate(-30,10) scale(0.8)">' + gem + '</g>' +
-      '<circle cx="132" cy="46" r="6.5" fill="url(#' + metalId + ')"/><line x1="132" y1="52" x2="132" y2="68" stroke="#B99951" stroke-width="2.4"/>' +
-      '<g transform="translate(32,2) scale(0.8)">' + gem + '</g>';
-  } else if (shape === 'loose') {
-    body =
-      '<polygon points="100,50 128,66 128,110 100,128 72,110 72,66" fill="url(#' + stoneId + ')" stroke="#fff" stroke-width="1.4" opacity="0.97"/>' +
-      '<polygon points="100,50 128,66 100,80 72,66" fill="#bdf3d9" opacity="0.6"/>';
-  } else { /* bracelet */
-    body =
-      '<ellipse cx="100" cy="120" rx="58" ry="24" fill="none" stroke="url(#' + metalId + ')" stroke-width="8"/>' +
-      '<g transform="translate(-42,4) scale(0.62)">' + gem + '</g>' +
-      '<g transform="translate(0,4) scale(0.62)">' + gem + '</g>' +
-      '<g transform="translate(42,4) scale(0.62)">' + gem + '</g>';
-  }
-
-  return '<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">' + defs + floor + body + '</svg>';
+/* ---------- fotografía de catálogo (placeholders premium, no inventario real) ---------- */
+function jewelImg(product, className) {
+  return '<img class="' + className + '" src="' + product.img + '" alt="' + product.name + '" loading="lazy">';
 }
 
 /* ---------- navegación entre vistas ---------- */
@@ -101,7 +45,7 @@ function goTo(view) {
 function populateProduct(id) {
   var p = PRODUCTS.find(function (x) { return x.id === id; });
   if (!p) return;
-  document.getElementById('product-photo').innerHTML = jewelSVG(p.shape);
+  document.getElementById('product-photo').innerHTML = jewelImg(p, 'photo-img');
   document.getElementById('pd-category').textContent = p.category;
   document.getElementById('pd-name').textContent = p.name;
   document.getElementById('pd-price').textContent = p.price;
@@ -124,7 +68,7 @@ function renderGrid() {
     var card = document.createElement('article');
     card.className = 'product-card';
     card.innerHTML =
-      '<div class="product-photo-sm">' + jewelSVG(p.shape) + '</div>' +
+      '<div class="product-photo-sm">' + jewelImg(p, 'photo-img-sm') + '</div>' +
       '<div class="product-copy">' +
         '<p class="p-name">' + p.name + '</p>' +
         '<p class="p-price">' + p.price + '</p>' +
@@ -138,7 +82,8 @@ function renderGrid() {
 /* ---------- eventos ---------- */
 document.addEventListener('DOMContentLoaded', function () {
   renderGrid();
-  document.getElementById('hero-visual').innerHTML = jewelSVG('necklace');
+  var heroProduct = PRODUCTS.find(function (x) { return x.id === 'cascada'; });
+  document.getElementById('hero-visual').innerHTML = jewelImg(heroProduct, 'photo-img');
   if (PRODUCTS.length) populateProduct(PRODUCTS[3].id); /* precarga collar destacado sin navegar */
   goTo('home');
 
