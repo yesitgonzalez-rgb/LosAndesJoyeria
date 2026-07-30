@@ -5,25 +5,29 @@
 
 var WHATSAPP_NUMBER = '573132091591';
 
+/* Placeholders premium — reemplazar por fotografía oficial en assets/placeholders/
+   conservando estos mismos nombres de archivo; el código no necesita cambios. */
+var HERO_IMAGE = 'assets/placeholders/hero-banner.webp';
+
 var PRODUCTS = [
   { id: 'halo', name: 'Anillo Halo Esmeralda', category: 'Anillos', price: '$4.850.000',
     desc: 'Oro blanco 18k con esmeralda colombiana talla ovalada de 0.9ct, rodeada de un halo de diamantes naturales.',
-    img: 'assets/products/ring-halo.jpg' },
+    img: 'assets/placeholders/ring-emerald-01.webp' },
   { id: 'solitario', name: 'Anillo Solitario Andes', category: 'Anillos', price: '$3.200.000',
     desc: 'Diseño clásico en oro amarillo 18k con esmeralda central de corte esmeralda. Elegancia atemporal.',
-    img: 'assets/products/ring-solitario.jpg' },
+    img: 'assets/placeholders/ring-emerald-02.webp' },
   { id: 'gota', name: 'Aretes Gota Esmeralda', category: 'Aretes', price: '$2.650.000',
     desc: 'Aretes colgantes en oro blanco con esmeraldas en talla gota y contorno de micro pavé de diamantes.',
-    img: 'assets/products/earrings-gota.jpg' },
+    img: 'assets/placeholders/earrings-emerald-01.webp' },
   { id: 'cascada', name: 'Collar Cascada Esmeralda', category: 'Collares', price: '$5.900.000',
     desc: 'Oro blanco 18k con cascada de esmeraldas colombianas en talla marquís, cadena ajustable de 40 a 45cm.',
-    img: 'assets/products/necklace-cascada.jpg' },
+    img: 'assets/placeholders/necklace-emerald-01.webp' },
   { id: 'suelta', name: 'Esmeralda Suelta Premium', category: 'Esmeraldas Sueltas', price: '$6.500.000',
     desc: 'Esmeralda colombiana en bruto de origen Muzo, 1.2ct, con certificado de autenticidad.',
-    img: 'assets/products/gem-suelta.jpg' },
+    img: 'assets/placeholders/gem-emerald-01.webp' },
   { id: 'pulsera', name: 'Pulsera Línea Esmeralda', category: 'Pulseras', price: '$2.250.000',
     desc: 'Oro blanco 18k con línea de esmeraldas talla baguette. Cierre de seguridad con broche oculto.',
-    img: 'assets/products/bracelet-linea.jpg' }
+    img: 'assets/placeholders/bracelet-gold-01.webp' }
 ];
 
 /* ---------- fotografía de catálogo (placeholders premium, no inventario real) ---------- */
@@ -82,8 +86,8 @@ function renderGrid() {
 /* ---------- eventos ---------- */
 document.addEventListener('DOMContentLoaded', function () {
   renderGrid();
-  var heroProduct = PRODUCTS.find(function (x) { return x.id === 'cascada'; });
-  document.getElementById('hero-visual').innerHTML = jewelImg(heroProduct, 'photo-img');
+  document.getElementById('hero-visual').innerHTML =
+    '<img class="photo-img" src="' + HERO_IMAGE + '" alt="Los Andes Joyería" loading="eager">';
   if (PRODUCTS.length) populateProduct(PRODUCTS[3].id); /* precarga collar destacado sin navegar */
   goTo('home');
 
