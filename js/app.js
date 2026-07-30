@@ -76,7 +76,7 @@ function renderGrid() {
       '<div class="product-copy">' +
         '<p class="p-name">' + p.name + '</p>' +
         '<p class="p-price">' + p.price + '</p>' +
-        '<span class="p-btn">Ver Detalle</span>' +
+        '<span class="p-btn">Ver Detalle <span class="p-btn-arrow">&#8594;</span></span>' +
       '</div>';
     card.addEventListener('click', function () { openProduct(p.id); });
     grid.appendChild(card);
