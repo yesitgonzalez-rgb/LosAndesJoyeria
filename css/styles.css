@@ -163,7 +163,7 @@ main { max-width: var(--container); margin: 0 auto; padding: 0 22px; }
 
 .marquee-row {
   display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
-  padding: 26px 0 60px; border-top: 1px solid var(--gray-light); margin-top: 8px;
+  padding: 26px 0 40px; border-top: 1px solid var(--gray-light); margin-top: 8px;
 }
 .marquee-row span {
   font-size: 11.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray);
@@ -171,6 +171,46 @@ main { max-width: var(--container); margin: 0 auto; padding: 0 22px; }
 .marquee-row span:not(:last-child)::after {
   content: '·'; margin-left: 14px; color: var(--gold-light); font-weight: 700;
 }
+
+/* ---------- MOMENTOS (Home) ---------- */
+.moments { padding: 8px 0 60px; }
+.moments-title {
+  font-size: clamp(1.5rem, 5vw, 1.9rem); line-height: 1.28; text-align: center; margin: 0 0 28px;
+}
+
+.moments-row {
+  display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
+  margin: 0 -22px; padding: 4px 22px 14px; scrollbar-width: none;
+}
+.moments-row::-webkit-scrollbar { display: none; }
+
+.moment-card {
+  flex: none; width: 74vw; max-width: 260px; scroll-snap-align: start;
+  background: var(--white); border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow-soft); cursor: pointer;
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+.moment-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+.moment-card:active { transform: scale(0.98); }
+
+.moment-photo { aspect-ratio: 4 / 5; overflow: hidden; background: #f4f4f2; }
+.moment-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s var(--ease); }
+.moment-card:hover .moment-photo img { transform: scale(1.05); }
+
+.moment-card > *:not(.moment-photo) { padding-left: 18px; padding-right: 18px; }
+.moment-name {
+  font-family: var(--font-display); font-weight: 700; font-size: 15.5px; color: var(--ink);
+  margin: 16px 0 4px;
+}
+.moment-desc { font-size: 12.5px; line-height: 1.5; color: var(--gray); margin: 0 0 14px; }
+.moment-cta {
+  display: inline-flex; align-items: center; gap: 6px; margin-bottom: 18px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--emerald-dark); transition: color .3s ease, gap .3s ease;
+}
+.moment-arrow { color: var(--gold); transition: transform .3s var(--ease); }
+.moment-card:hover .moment-cta { color: var(--gold); gap: 10px; }
+.moment-card:hover .moment-arrow { transform: translateX(3px); }
 
 /* ---------- COLECCIÓN ---------- */
 .section-intro { padding: 48px 0 30px; text-align: center; }
@@ -291,6 +331,12 @@ main { max-width: var(--container); margin: 0 auto; padding: 0 22px; }
 
   .contact-layout { flex-direction: row; align-items: flex-start; gap: 48px; }
   .contact-info, .contact-form { flex: 1; }
+
+  .moments-row {
+    overflow: visible; margin: 0; padding: 0; scroll-snap-type: none;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .moment-card { width: auto; max-width: none; }
 }
 
 /* ========================================================
@@ -312,4 +358,8 @@ main { max-width: var(--container); margin: 0 auto; padding: 0 22px; }
 
   .product-grid { grid-template-columns: repeat(3, 1fr); gap: 28px; }
   .section-intro { padding: 70px 0 40px; }
+
+  .moments { padding: 20px 0 80px; }
+  .moments-title { font-size: 2rem; }
+  .moments-row { grid-template-columns: repeat(5, 1fr); gap: 22px; }
 }
