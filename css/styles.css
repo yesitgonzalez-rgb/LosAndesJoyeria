@@ -215,12 +215,34 @@ main { max-width: var(--container); margin: 0 auto; padding: 0 22px; }
 /* ---------- COLECCIÓN ---------- */
 .section-intro { padding: 48px 0 30px; text-align: center; }
 .section-title { font-size: clamp(1.9rem, 6vw, 2.4rem); }
+.collection-intro { padding: 6px 0 26px; text-align: left; }
 
-.collection-block:not(:last-child) { margin-bottom: 12px; }
-.collection-heading {
-  font-family: var(--font-display); font-weight: 700; color: var(--emerald-dark);
-  font-size: 1.2rem; margin: 0 0 18px; padding-bottom: 12px; border-bottom: 1px solid var(--gray-light);
+/* índice de colecciones */
+.collection-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding-bottom: 60px; }
+.collection-card {
+  background: var(--white); border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow-soft); cursor: pointer;
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
 }
+.collection-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+.collection-card:active { transform: scale(0.98); }
+.collection-photo { aspect-ratio: 4 / 5; overflow: hidden; background: #f4f4f2; }
+.collection-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s var(--ease); }
+.collection-card:hover .collection-photo img { transform: scale(1.05); }
+.collection-card > *:not(.collection-photo) { padding-left: 16px; padding-right: 16px; }
+.collection-name {
+  font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--ink);
+  margin: 14px 0 4px;
+}
+.collection-desc { font-size: 11.5px; line-height: 1.5; color: var(--gray); margin: 0 0 14px; }
+.collection-cta {
+  display: inline-flex; align-items: center; gap: 6px; margin-bottom: 16px;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--emerald-dark); transition: color .3s ease, gap .3s ease;
+}
+.collection-arrow { color: var(--gold); transition: transform .3s var(--ease); }
+.collection-card:hover .collection-cta { color: var(--gold); gap: 10px; }
+.collection-card:hover .collection-arrow { transform: translateX(3px); }
 
 .product-grid { display: grid; grid-template-columns: 1fr; gap: 20px; padding-bottom: 60px; }
 .product-card {
@@ -343,6 +365,8 @@ main { max-width: var(--container); margin: 0 auto; padding: 0 22px; }
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
   }
   .moment-card { width: auto; max-width: none; }
+
+  .collection-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
 }
 
 /* ========================================================
@@ -368,4 +392,6 @@ main { max-width: var(--container); margin: 0 auto; padding: 0 22px; }
   .moments { padding: 20px 0 80px; }
   .moments-title { font-size: 2rem; }
   .moments-row { grid-template-columns: repeat(5, 1fr); gap: 22px; }
+
+  .collection-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
 }

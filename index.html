@@ -57,35 +57,35 @@
       <h2 class="moments-title">Encuentra la joya perfecta<br>para tu momento</h2>
 
       <div class="moments-row">
-        <article class="moment-card" data-nav="coleccion">
+        <article class="moment-card" data-nav="coleccion" data-collection="Anillos de Compromiso">
           <div class="moment-photo"><img src="assets/images/products/ring-amore.webp" alt="Anillos de compromiso" loading="lazy"></div>
           <p class="moment-name">💍 Me voy a comprometer</p>
           <p class="moment-desc">Anillos diseñados para el sí más importante.</p>
           <span class="moment-cta">Explorar <span class="moment-arrow">→</span></span>
         </article>
 
-        <article class="moment-card" data-nav="coleccion">
+        <article class="moment-card" data-nav="coleccion" data-collection="Argollas de Matrimonio">
           <div class="moment-photo"><img src="assets/images/products/wedding-band-armony.webp" alt="Argollas de matrimonio" loading="lazy"></div>
           <p class="moment-name">💒 Voy a casarme</p>
           <p class="moment-desc">Argollas que sellan una promesa para siempre.</p>
           <span class="moment-cta">Explorar <span class="moment-arrow">→</span></span>
         </article>
 
-        <article class="moment-card" data-nav="coleccion">
+        <article class="moment-card" data-nav="coleccion" data-collection="Anillos de Grado">
           <div class="moment-photo"><img src="assets/images/products/class-ring-victory.webp" alt="Anillos de grado" loading="lazy"></div>
           <p class="moment-name">🎓 Celebro mi grado</p>
           <p class="moment-desc">Un regalo que marca el inicio de un nuevo capítulo.</p>
           <span class="moment-cta">Explorar <span class="moment-arrow">→</span></span>
         </article>
 
-        <article class="moment-card" data-nav="coleccion">
+        <article class="moment-card" data-nav="coleccion" data-collection="Regalos Especiales">
           <div class="moment-photo"><img src="assets/images/products/necklace-forever.webp" alt="Regalos especiales" loading="lazy"></div>
           <p class="moment-name">🎁 Busco un regalo</p>
           <p class="moment-desc">Piezas perfectas para sorprender a alguien especial.</p>
           <span class="moment-cta">Explorar <span class="moment-arrow">→</span></span>
         </article>
 
-        <article class="moment-card" data-nav="coleccion">
+        <article class="moment-card" data-nav="coleccion" data-collection="Esmeraldas Colombianas">
           <div class="moment-photo"><img src="assets/images/products/necklace-esmerald.webp" alt="Esmeraldas colombianas" loading="lazy"></div>
           <p class="moment-name">💚 Quiero una esmeralda</p>
           <p class="moment-desc">El verde más codiciado de Colombia, en su estado más puro.</p>
@@ -97,16 +97,34 @@
 
   <!-- ============ COLECCIÓN ============ -->
   <section class="view" id="view-coleccion" data-view="coleccion">
-    <div class="section-intro">
-      <p class="eyebrow">La Colección</p>
-      <h2 class="section-title">Piezas seleccionadas</h2>
+
+    <!-- Índice de colecciones -->
+    <div id="collections-index">
+      <div class="section-intro">
+        <p class="eyebrow">La Colección</p>
+        <h2 class="section-title">Nuestras colecciones</h2>
+      </div>
+      <div class="collection-grid" id="collection-grid"></div>
     </div>
-    <div id="collections-list"></div>
+
+    <!-- Detalle de una colección (oculto por defecto) -->
+    <div id="collection-detail" hidden>
+      <button class="back-link" id="collection-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+        Colecciones
+      </button>
+      <div class="section-intro collection-intro">
+        <p class="eyebrow">Colección</p>
+        <h2 class="section-title" id="cd-title">—</h2>
+      </div>
+      <div class="product-grid" id="collection-products"></div>
+    </div>
+
   </section>
 
   <!-- ============ PRODUCTO ============ -->
   <section class="view" id="view-producto" data-view="producto">
-    <button class="back-link" data-nav="coleccion">
+    <button class="back-link" id="product-back">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
       Colección
     </button>

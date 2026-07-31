@@ -8,17 +8,19 @@ var WHATSAPP_NUMBER = '573132091591';
 /* Imagen destacada de Inicio — fotografía oficial de la biblioteca premium. */
 var HERO_IMAGE = 'assets/images/products/ring-victoria.webp';
 
-/* Orden de despliegue de las colecciones en la vista Colección. */
+/* Colecciones — orden de despliegue, imagen representativa y descripción breve. */
 var COLLECTIONS = [
-  'Anillos de Compromiso',
-  'Argollas de Matrimonio',
-  'Anillos de Grado',
-  'Esmeraldas Colombianas',
-  'Alta Joyería',
-  'Joyería en Oro',
-  'Joyería en Plata',
-  'Regalos Especiales'
+  { name: 'Anillos de Compromiso', desc: 'Diseños que celebran el inicio de una historia para toda la vida.', img: 'assets/images/products/ring-victoria.webp' },
+  { name: 'Argollas de Matrimonio', desc: 'Símbolos de una promesa que se sella para siempre.', img: 'assets/images/products/wedding-band-infinity.webp' },
+  { name: 'Anillos de Grado', desc: 'El reconocimiento a un logro que merece ser celebrado.', img: 'assets/images/products/class-ring-victory.webp' },
+  { name: 'Esmeraldas Colombianas', desc: 'El verde más codiciado del mundo, engastado a mano en cada pieza.', img: 'assets/images/products/necklace-esmerald.webp' },
+  { name: 'Alta Joyería', desc: 'Piezas excepcionales, creadas para momentos irrepetibles.', img: 'assets/images/products/necklace-magestic.webp' },
+  { name: 'Joyería en Oro', desc: 'Piezas atemporales en oro puro, para el día a día o la ocasión especial.', img: 'assets/images/products/bracelet-gold-prestige.webp' },
+  { name: 'Joyería en Plata', desc: 'Diseños contemporáneos con la elegancia discreta de la plata.', img: 'assets/images/products/bracelet-silver-signature.webp' },
+  { name: 'Regalos Especiales', desc: 'El detalle perfecto para decir lo que las palabras no alcanzan.', img: 'assets/images/products/necklace-forever.webp' }
 ];
+
+var currentCollection = null;
 
 var PRODUCTS = [
   // Anillos de Compromiso
@@ -154,46 +156,60 @@ function openProduct(id) {
   goTo('producto');
 }
 
-/* ---------- construir colección (agrupada por colección) ---------- */
-function renderGrid() {
-  var container = document.getElementById('collections-list');
-  COLLECTIONS.forEach(function (collectionName) {
-    var items = PRODUCTS.filter(function (p) { return p.category === collectionName; });
-    if (!items.length) return;
-
-    var block = document.createElement('section');
-    block.className = 'collection-block';
-
-    var heading = document.createElement('h3');
-    heading.className = 'collection-heading';
-    heading.textContent = collectionName;
-    block.appendChild(heading);
-
-    var grid = document.createElement('div');
-    grid.className = 'product-grid';
-
-    items.forEach(function (p) {
-      var card = document.createElement('article');
-      card.className = 'product-card';
-      card.innerHTML =
-        '<div class="product-photo-sm">' + jewelImg(p, 'photo-img-sm') + '</div>' +
-        '<div class="product-copy">' +
-          '<p class="p-name">' + p.name + '</p>' +
-          '<p class="p-price">' + p.price + '</p>' +
-          '<span class="p-btn">Ver Detalle <span class="p-btn-arrow">&#8594;</span></span>' +
-        '</div>';
-      card.addEventListener('click', function () { openProduct(p.id); });
-      grid.appendChild(card);
-    });
-
-    block.appendChild(grid);
-    container.appendChild(block);
+/* ---------- índice de colecciones ---------- */
+function renderCollectionsIndex() {
+  var grid = document.getElementById('collection-grid');
+  COLLECTIONS.forEach(function (c) {
+    var card = document.createElement('article');
+    card.className = 'collection-card';
+    card.innerHTML =
+      '<div class="collection-photo"><img src="' + c.img + '" alt="' + c.name + '" loading="lazy"></div>' +
+      '<p class="collection-name">' + c.name + '</p>' +
+      '<p class="collection-desc">' + c.desc + '</p>' +
+      '<span class="collection-cta">Explorar <span class="collection-arrow">→</span></span>';
+    card.addEventListener('click', function () { openCollection(c.name); });
+    grid.appendChild(card);
   });
+}
+
+function renderProductCards(grid, items) {
+  grid.innerHTML = '';
+  items.forEach(function (p) {
+    var card = document.createElement('article');
+    card.className = 'product-card';
+    card.innerHTML =
+      '<div class="product-photo-sm">' + jewelImg(p, 'photo-img-sm') + '</div>' +
+      '<div class="product-copy">' +
+        '<p class="p-name">' + p.name + '</p>' +
+        '<p class="p-price">' + p.price + '</p>' +
+        '<span class="p-btn">Ver Detalle <span class="p-btn-arrow">&#8594;</span></span>' +
+      '</div>';
+    card.addEventListener('click', function () { openProduct(p.id); });
+    grid.appendChild(card);
+  });
+}
+
+function showCollectionsIndex() {
+  currentCollection = null;
+  document.getElementById('collections-index').hidden = false;
+  document.getElementById('collection-detail').hidden = true;
+}
+
+function openCollection(name) {
+  var info = COLLECTIONS.find(function (c) { return c.name === name; });
+  if (!info) return;
+  currentCollection = name;
+  document.getElementById('collections-index').hidden = true;
+  document.getElementById('collection-detail').hidden = false;
+  document.getElementById('cd-title').textContent = name;
+  var items = PRODUCTS.filter(function (p) { return p.category === name; });
+  renderProductCards(document.getElementById('collection-products'), items);
+  window.scrollTo(0, 0);
 }
 
 /* ---------- eventos ---------- */
 document.addEventListener('DOMContentLoaded', function () {
-  renderGrid();
+  renderCollectionsIndex();
   document.getElementById('hero-visual').innerHTML =
     '<img class="photo-img" src="' + HERO_IMAGE + '" alt="Los Andes Joyería" loading="eager">';
   populateProduct('victoria'); /* precarga una pieza destacada sin navegar */
@@ -202,8 +218,29 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('[data-nav]').forEach(function (el) {
     el.addEventListener('click', function (e) {
       e.preventDefault();
-      goTo(el.dataset.nav);
+      var target = el.dataset.nav;
+      goTo(target);
+      if (target === 'coleccion') {
+        if (el.dataset.collection) {
+          openCollection(el.dataset.collection);
+        } else {
+          showCollectionsIndex();
+        }
+      }
     });
+  });
+
+  document.getElementById('collection-back').addEventListener('click', function () {
+    showCollectionsIndex();
+  });
+
+  document.getElementById('product-back').addEventListener('click', function () {
+    goTo('coleccion');
+    if (currentCollection) {
+      openCollection(currentCollection);
+    } else {
+      showCollectionsIndex();
+    }
   });
 
   document.getElementById('pd-info').addEventListener('click', function () {
