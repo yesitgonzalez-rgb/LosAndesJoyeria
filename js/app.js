@@ -8,16 +8,34 @@ var WHATSAPP_NUMBER = '573132091591';
 /* Imagen destacada de Inicio — fotografía oficial de la biblioteca premium. */
 var HERO_IMAGE = 'assets/images/products/ring-victoria.webp';
 
-/* Colecciones — orden de despliegue, imagen representativa y descripción breve. */
+/* Colecciones — orden de despliegue, título, descripción emocional e imagen representativa.
+   "name" es el identificador interno (debe calzar con PRODUCTS[].category); "title" es el
+   texto elegante mostrado al usuario. */
 var COLLECTIONS = [
-  { name: 'Anillos de Compromiso', desc: 'Diseños que celebran el inicio de una historia para toda la vida.', img: 'assets/images/products/ring-victoria.webp' },
-  { name: 'Argollas de Matrimonio', desc: 'Símbolos de una promesa que se sella para siempre.', img: 'assets/images/products/wedding-band-infinity.webp' },
-  { name: 'Anillos de Grado', desc: 'El reconocimiento a un logro que merece ser celebrado.', img: 'assets/images/products/class-ring-victory.webp' },
-  { name: 'Esmeraldas Colombianas', desc: 'El verde más codiciado del mundo, engastado a mano en cada pieza.', img: 'assets/images/products/necklace-esmerald.webp' },
-  { name: 'Alta Joyería', desc: 'Piezas excepcionales, creadas para momentos irrepetibles.', img: 'assets/images/products/necklace-magestic.webp' },
-  { name: 'Joyería en Oro', desc: 'Piezas atemporales en oro puro, para el día a día o la ocasión especial.', img: 'assets/images/products/bracelet-gold-prestige.webp' },
-  { name: 'Joyería en Plata', desc: 'Diseños contemporáneos con la elegancia discreta de la plata.', img: 'assets/images/products/bracelet-silver-signature.webp' },
-  { name: 'Regalos Especiales', desc: 'El detalle perfecto para decir lo que las palabras no alcanzan.', img: 'assets/images/products/necklace-forever.webp' }
+  { name: 'Anillos de Compromiso', title: '💍 Anillos de Compromiso',
+    desc: 'El inicio de una historia inolvidable. Diseños creados para celebrar el momento más importante de una pareja.',
+    img: 'assets/images/products/ring-victoria.webp' },
+  { name: 'Argollas de Matrimonio', title: '💒 Argollas de Matrimonio',
+    desc: 'Símbolos de amor eterno elaborados con materiales nobles y acabados de alta joyería.',
+    img: 'assets/images/products/wedding-band-infinity.webp' },
+  { name: 'Anillos de Grado', title: '🎓 Anillos de Grado',
+    desc: 'Una pieza que representa años de esfuerzo, dedicación y nuevos comienzos.',
+    img: 'assets/images/products/class-ring-victory.webp' },
+  { name: 'Esmeraldas Colombianas', title: '💚 Esmeraldas Colombianas',
+    desc: 'La belleza incomparable de las esmeraldas colombianas convertidas en joyas únicas.',
+    img: 'assets/images/products/necklace-esmerald.webp' },
+  { name: 'Alta Joyería', title: '👑 Alta Joyería',
+    desc: 'Piezas exclusivas diseñadas para quienes buscan lujo, elegancia y distinción.',
+    img: 'assets/images/products/necklace-magestic.webp' },
+  { name: 'Joyería en Oro', title: '✨ Joyería en Oro',
+    desc: 'Creaciones atemporales en oro de 18K para acompañar cada momento especial.',
+    img: 'assets/images/products/bracelet-gold-prestige.webp' },
+  { name: 'Joyería en Plata', title: '🌙 Joyería en Plata',
+    desc: 'Elegancia contemporánea con diseños versátiles para el día a día.',
+    img: 'assets/images/products/bracelet-silver-signature.webp' },
+  { name: 'Regalos Especiales', title: '🎁 Regalos Especiales',
+    desc: 'Joyas pensadas para sorprender y convertir cada ocasión en un recuerdo inolvidable.',
+    img: 'assets/images/products/necklace-forever.webp' }
 ];
 
 var currentCollection = null;
@@ -164,9 +182,9 @@ function renderCollectionsIndex() {
     card.className = 'collection-card';
     card.innerHTML =
       '<div class="collection-photo"><img src="' + c.img + '" alt="' + c.name + '" loading="lazy"></div>' +
-      '<p class="collection-name">' + c.name + '</p>' +
+      '<p class="collection-name">' + c.title + '</p>' +
       '<p class="collection-desc">' + c.desc + '</p>' +
-      '<span class="collection-cta">Explorar <span class="collection-arrow">→</span></span>';
+      '<span class="collection-cta">Explorar Colección <span class="collection-arrow">→</span></span>';
     card.addEventListener('click', function () { openCollection(c.name); });
     grid.appendChild(card);
   });
@@ -201,7 +219,7 @@ function openCollection(name) {
   currentCollection = name;
   document.getElementById('collections-index').hidden = true;
   document.getElementById('collection-detail').hidden = false;
-  document.getElementById('cd-title').textContent = name;
+  document.getElementById('cd-title').textContent = info.title;
   var items = PRODUCTS.filter(function (p) { return p.category === name; });
   renderProductCards(document.getElementById('collection-products'), items);
   window.scrollTo(0, 0);
