@@ -24,6 +24,22 @@ var SERVICES = [
     desc: 'Te acompañamos en la elección de la joya ideal para cada ocasión.' }
 ];
 
+/* Beneficios — cierre de la vista Colección, antes de Contacto. */
+var BENEFITS = [
+  { icon: '💎', name: 'Catálogo disponible 24/7',
+    desc: 'Tus clientes podrán explorar tus colecciones en cualquier momento.' },
+  { icon: '📲', name: 'Atención directa por WhatsApp',
+    desc: 'Cada producto puede convertirse en una conversación inmediata.' },
+  { icon: '❤️', name: 'Mayor confianza en la marca',
+    desc: 'Una App transmite innovación, respaldo y profesionalismo.' },
+  { icon: '🎁', name: 'Experiencia personalizada',
+    desc: 'El cliente encuentra más fácilmente la joya ideal.' },
+  { icon: '🚀', name: 'Mayor intención de compra',
+    desc: 'Una mejor experiencia genera más consultas y más oportunidades de venta.' },
+  { icon: '✨', name: 'Preparada para crecer',
+    desc: 'Esta Demo puede evolucionar hacia una App completa con IA, citas, pagos, realidad aumentada y mucho más.' }
+];
+
 /* Colecciones — orden de despliegue, título, descripción emocional e imagen representativa.
    "name" es el identificador interno (debe calzar con PRODUCTS[].category); "title" es el
    texto elegante mostrado al usuario. */
@@ -227,6 +243,20 @@ function renderServices() {
   });
 }
 
+/* ---------- beneficios ---------- */
+function renderBenefits() {
+  var grid = document.getElementById('benefits-grid');
+  BENEFITS.forEach(function (b) {
+    var card = document.createElement('div');
+    card.className = 'benefit-card';
+    card.innerHTML =
+      '<span class="benefit-icon">' + b.icon + '</span>' +
+      '<p class="benefit-name">' + b.name + '</p>' +
+      '<p class="benefit-desc">' + b.desc + '</p>';
+    grid.appendChild(card);
+  });
+}
+
 function renderProductCards(grid, items) {
   grid.innerHTML = '';
   items.forEach(function (p) {
@@ -266,6 +296,7 @@ function openCollection(name) {
 document.addEventListener('DOMContentLoaded', function () {
   renderCollectionsIndex();
   renderServices();
+  renderBenefits();
   document.getElementById('hero-visual').innerHTML =
     '<img class="photo-img" src="' + HERO_IMAGE + '" alt="Los Andes Joyería" loading="eager">';
   populateProduct('victoria'); /* precarga una pieza destacada sin navegar */
