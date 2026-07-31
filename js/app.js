@@ -40,6 +40,16 @@ var BENEFITS = [
     desc: 'Esta Demo puede evolucionar hacia una App completa con IA, citas, pagos, realidad aumentada y mucho más.' }
 ];
 
+/* EVA — Asesora Virtual. "collection" debe calzar con el "name" en COLLECTIONS. */
+var EVA_OPTIONS = [
+  { icon: '💍', label: 'Anillo de Compromiso', collection: 'Anillos de Compromiso' },
+  { icon: '💒', label: 'Argollas de Matrimonio', collection: 'Argollas de Matrimonio' },
+  { icon: '🎓', label: 'Anillo de Grado', collection: 'Anillos de Grado' },
+  { icon: '💚', label: 'Esmeraldas Colombianas', collection: 'Esmeraldas Colombianas' },
+  { icon: '✨', label: 'Alta Joyería', collection: 'Alta Joyería' },
+  { icon: '🎁', label: 'Un Regalo Especial', collection: 'Regalos Especiales' }
+];
+
 /* Colecciones — orden de despliegue, título, descripción emocional e imagen representativa.
    "name" es el identificador interno (debe calzar con PRODUCTS[].category); "title" es el
    texto elegante mostrado al usuario. */
@@ -257,6 +267,39 @@ function renderBenefits() {
   });
 }
 
+/* ---------- EVA — Asesora Virtual ---------- */
+function renderEvaOptions() {
+  var wrap = document.getElementById('eva-options');
+  EVA_OPTIONS.forEach(function (o) {
+    var btn = document.createElement('button');
+    btn.className = 'eva-option';
+    btn.innerHTML =
+      '<span class="eva-option-icon">' + o.icon + '</span>' +
+      '<span class="eva-option-label">' + o.label + '</span>' +
+      '<span class="eva-option-arrow">→</span>';
+    btn.addEventListener('click', function () {
+      closeEva();
+      goTo('coleccion');
+      openCollection(o.collection);
+    });
+    wrap.appendChild(btn);
+  });
+}
+
+function openEva() {
+  var overlay = document.getElementById('eva-overlay');
+  overlay.hidden = false;
+  requestAnimationFrame(function () { overlay.classList.add('active'); });
+  document.body.style.overflow = 'hidden';
+}
+
+function closeEva() {
+  var overlay = document.getElementById('eva-overlay');
+  overlay.classList.remove('active');
+  document.body.style.overflow = '';
+  setTimeout(function () { overlay.hidden = true; }, 300);
+}
+
 function renderProductCards(grid, items) {
   grid.innerHTML = '';
   items.forEach(function (p) {
@@ -297,6 +340,7 @@ document.addEventListener('DOMContentLoaded', function () {
   renderCollectionsIndex();
   renderServices();
   renderBenefits();
+  renderEvaOptions();
   document.getElementById('hero-visual').innerHTML =
     '<img class="photo-img" src="' + HERO_IMAGE + '" alt="Los Andes Joyería" loading="eager">';
   populateProduct('victoria'); /* precarga una pieza destacada sin navegar */
@@ -344,5 +388,14 @@ document.addEventListener('DOMContentLoaded', function () {
     var mensaje = document.getElementById('cf-mensaje').value.trim();
     var text = encodeURIComponent('Hola, soy ' + nombre + '. ' + mensaje);
     window.open('https://wa.me/' + WHATSAPP_NUMBER + '?text=' + text, '_blank', 'noopener');
+  });
+
+  document.getElementById('eva-trigger').addEventListener('click', openEva);
+  document.getElementById('eva-close').addEventListener('click', closeEva);
+  document.getElementById('eva-overlay').addEventListener('click', function (e) {
+    if (e.target === this) closeEva();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !document.getElementById('eva-overlay').hidden) closeEva();
   });
 });

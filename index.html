@@ -22,13 +22,35 @@
       <img src="assets/logos/losandes-icon.webp" alt="Los Andes Joyería" class="brand-logo">
       <span class="brand-name">Los Andes</span>
     </a>
-    <nav class="top-nav" aria-label="Navegación principal">
-      <button class="top-nav-link active" data-nav="home">Inicio</button>
-      <button class="top-nav-link" data-nav="coleccion">Colección</button>
-      <button class="top-nav-link" data-nav="contacto">Contacto</button>
-    </nav>
+    <div class="header-right">
+      <nav class="top-nav" aria-label="Navegación principal">
+        <button class="top-nav-link active" data-nav="home">Inicio</button>
+        <button class="top-nav-link" data-nav="coleccion">Colección</button>
+        <button class="top-nav-link" data-nav="contacto">Contacto</button>
+      </nav>
+      <button class="eva-trigger" id="eva-trigger">
+        <span class="eva-trigger-icon">💎</span> EVA
+      </button>
+    </div>
   </div>
 </header>
+
+<!-- ============ EVA — Asesora Virtual ============ -->
+<div class="eva-overlay" id="eva-overlay" hidden>
+  <div class="eva-modal" role="dialog" aria-modal="true" aria-labelledby="eva-name">
+    <button class="eva-close" id="eva-close" aria-label="Cerrar">&times;</button>
+
+    <div class="eva-badge">💎</div>
+    <p class="eva-hello">Hola.</p>
+    <h2 class="eva-name" id="eva-name">Soy EVA</h2>
+    <p class="eva-role">Asesora Virtual de Los Andes Joyería</p>
+
+    <p class="eva-intro">Será un gusto ayudarte a encontrar la joya perfecta. Responderé algunas preguntas para recomendarte la colección más adecuada.</p>
+
+    <p class="eva-question">¿Qué estás buscando hoy?</p>
+    <div class="eva-options" id="eva-options"></div>
+  </div>
+</div>
 
 <main id="main">
 
