@@ -246,6 +246,34 @@ main { max-width: var(--container); margin: 0 auto; padding: 0 22px; }
 .collection-card:hover .collection-cta { color: var(--gold); gap: 10px; }
 .collection-card:hover .collection-arrow { transform: translateX(3px); }
 
+/* ---------- SERVICIOS (dentro de Colección) ---------- */
+.services-section { padding-top: 8px; }
+
+.services-grid { display: grid; grid-template-columns: 1fr; gap: 12px; padding-bottom: 60px; }
+.service-card {
+  display: flex; align-items: flex-start; gap: 14px;
+  background: var(--white); border-radius: var(--radius-sm); padding: 16px;
+  box-shadow: var(--shadow-soft); transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.service-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }
+.service-card:active { transform: scale(0.98); }
+.service-icon {
+  flex: none; width: 42px; height: 42px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; font-size: 18px;
+  background: rgba(30,135,104,0.08);
+}
+.service-copy { display: flex; flex-direction: column; min-width: 0; }
+.service-name { font-family: var(--font-display); font-weight: 700; font-size: 14.5px; color: var(--ink); margin-bottom: 3px; }
+.service-desc { font-size: 12px; line-height: 1.5; color: var(--gray); margin-bottom: 8px; }
+.service-cta {
+  display: inline-flex; align-items: center; gap: 5px; align-self: flex-start;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--emerald-dark); transition: color .3s ease, gap .3s ease;
+}
+.service-arrow { color: var(--gold); transition: transform .3s var(--ease); }
+.service-card:hover .service-cta { color: var(--gold); gap: 9px; }
+.service-card:hover .service-arrow { transform: translateX(3px); }
+
 .product-grid { display: grid; grid-template-columns: 1fr; gap: 20px; padding-bottom: 60px; }
 .product-card {
   background: var(--white); border-radius: var(--radius); overflow: hidden;
@@ -369,6 +397,7 @@ main { max-width: var(--container); margin: 0 auto; padding: 0 22px; }
   .moment-card { width: auto; max-width: none; }
 
   .collection-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
 }
 
 /* ========================================================
@@ -396,4 +425,5 @@ main { max-width: var(--container); margin: 0 auto; padding: 0 22px; }
   .moments-row { grid-template-columns: repeat(5, 1fr); gap: 22px; }
 
   .collection-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .services-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
 }

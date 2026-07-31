@@ -8,6 +8,22 @@ var WHATSAPP_NUMBER = '573132091591';
 /* Imagen destacada de Inicio — fotografía oficial de la biblioteca premium. */
 var HERO_IMAGE = 'assets/images/products/ring-victoria.webp';
 
+/* Servicios — vista Colección, después del índice de colecciones. */
+var SERVICES = [
+  { icon: '💍', name: 'Diseño Personalizado',
+    desc: 'Creamos joyas únicas diseñadas exclusivamente para cada cliente.' },
+  { icon: '🛠', name: 'Restauración y Reparación',
+    desc: 'Devolvemos el brillo y la belleza a tus joyas más valiosas.' },
+  { icon: '📏', name: 'Ajuste de Talla',
+    desc: 'Adaptamos tus anillos para un ajuste perfecto.' },
+  { icon: '💎', name: 'Certificación de Piedras',
+    desc: 'Asesoría sobre autenticidad y calidad de esmeraldas y diamantes.' },
+  { icon: '🎁', name: 'Grabados Personalizados',
+    desc: 'Mensajes y fechas especiales para convertir cada joya en un recuerdo único.' },
+  { icon: '👨‍💼', name: 'Asesoría Personalizada',
+    desc: 'Te acompañamos en la elección de la joya ideal para cada ocasión.' }
+];
+
 /* Colecciones — orden de despliegue, título, descripción emocional e imagen representativa.
    "name" es el identificador interno (debe calzar con PRODUCTS[].category); "title" es el
    texto elegante mostrado al usuario. */
@@ -190,6 +206,27 @@ function renderCollectionsIndex() {
   });
 }
 
+/* ---------- servicios ---------- */
+function renderServices() {
+  var grid = document.getElementById('services-grid');
+  SERVICES.forEach(function (s) {
+    var waText = encodeURIComponent('Hola, me gustaría más información sobre el servicio de ' + s.name + '.');
+    var card = document.createElement('a');
+    card.className = 'service-card';
+    card.href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + waText;
+    card.target = '_blank';
+    card.rel = 'noopener';
+    card.innerHTML =
+      '<span class="service-icon">' + s.icon + '</span>' +
+      '<span class="service-copy">' +
+        '<span class="service-name">' + s.name + '</span>' +
+        '<span class="service-desc">' + s.desc + '</span>' +
+        '<span class="service-cta">Consultar por WhatsApp <span class="service-arrow">→</span></span>' +
+      '</span>';
+    grid.appendChild(card);
+  });
+}
+
 function renderProductCards(grid, items) {
   grid.innerHTML = '';
   items.forEach(function (p) {
@@ -228,6 +265,7 @@ function openCollection(name) {
 /* ---------- eventos ---------- */
 document.addEventListener('DOMContentLoaded', function () {
   renderCollectionsIndex();
+  renderServices();
   document.getElementById('hero-visual').innerHTML =
     '<img class="photo-img" src="' + HERO_IMAGE + '" alt="Los Andes Joyería" loading="eager">';
   populateProduct('victoria'); /* precarga una pieza destacada sin navegar */
