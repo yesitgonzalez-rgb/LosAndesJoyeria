@@ -216,6 +216,12 @@ main { max-width: var(--container); margin: 0 auto; padding: 0 22px; }
 .section-intro { padding: 48px 0 30px; text-align: center; }
 .section-title { font-size: clamp(1.9rem, 6vw, 2.4rem); }
 
+.collection-block:not(:last-child) { margin-bottom: 12px; }
+.collection-heading {
+  font-family: var(--font-display); font-weight: 700; color: var(--emerald-dark);
+  font-size: 1.2rem; margin: 0 0 18px; padding-bottom: 12px; border-bottom: 1px solid var(--gray-light);
+}
+
 .product-grid { display: grid; grid-template-columns: 1fr; gap: 20px; padding-bottom: 60px; }
 .product-card {
   background: var(--white); border-radius: var(--radius); overflow: hidden;

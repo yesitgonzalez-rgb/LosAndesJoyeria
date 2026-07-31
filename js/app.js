@@ -5,29 +5,118 @@
 
 var WHATSAPP_NUMBER = '573132091591';
 
-/* Placeholders premium — reemplazar por fotografía oficial en assets/placeholders/
-   conservando estos mismos nombres de archivo; el código no necesita cambios. */
-var HERO_IMAGE = 'assets/placeholders/hero-banner.webp';
+/* Imagen destacada de Inicio — fotografía oficial de la biblioteca premium. */
+var HERO_IMAGE = 'assets/images/products/ring-victoria.webp';
+
+/* Orden de despliegue de las colecciones en la vista Colección. */
+var COLLECTIONS = [
+  'Anillos de Compromiso',
+  'Argollas de Matrimonio',
+  'Anillos de Grado',
+  'Esmeraldas Colombianas',
+  'Alta Joyería',
+  'Joyería en Oro',
+  'Joyería en Plata',
+  'Regalos Especiales'
+];
 
 var PRODUCTS = [
-  { id: 'halo', name: 'Anillo Halo Esmeralda', category: 'Anillos', price: '$4.850.000',
-    desc: 'Oro blanco 18k con esmeralda colombiana talla ovalada de 0.9ct, rodeada de un halo de diamantes naturales.',
-    img: 'assets/placeholders/ring-emerald-01.webp' },
-  { id: 'solitario', name: 'Anillo Solitario Andes', category: 'Anillos', price: '$3.200.000',
-    desc: 'Diseño clásico en oro amarillo 18k con esmeralda central de corte esmeralda. Elegancia atemporal.',
-    img: 'assets/placeholders/ring-emerald-02.webp' },
-  { id: 'gota', name: 'Aretes Gota Esmeralda', category: 'Aretes', price: '$2.650.000',
-    desc: 'Aretes colgantes en oro blanco con esmeraldas en talla gota y contorno de micro pavé de diamantes.',
-    img: 'assets/placeholders/earrings-emerald-01.webp' },
-  { id: 'cascada', name: 'Collar Cascada Esmeralda', category: 'Collares', price: '$5.900.000',
-    desc: 'Oro blanco 18k con cascada de esmeraldas colombianas en talla marquís, cadena ajustable de 40 a 45cm.',
-    img: 'assets/placeholders/necklace-emerald-01.webp' },
-  { id: 'suelta', name: 'Esmeralda Suelta Premium', category: 'Esmeraldas Sueltas', price: '$6.500.000',
-    desc: 'Esmeralda colombiana en bruto de origen Muzo, 1.2ct, con certificado de autenticidad.',
-    img: 'assets/placeholders/gem-emerald-01.webp' },
-  { id: 'pulsera', name: 'Pulsera Línea Esmeralda', category: 'Pulseras', price: '$2.250.000',
-    desc: 'Oro blanco 18k con línea de esmeraldas talla baguette. Cierre de seguridad con broche oculto.',
-    img: 'assets/placeholders/bracelet-gold-01.webp' }
+  // Anillos de Compromiso
+  { id: 'amore', name: 'Amore', category: 'Anillos de Compromiso', price: '$5.200.000',
+    desc: 'Esmeralda colombiana talla redonda con halo de diamantes, en oro amarillo 18k.',
+    img: 'assets/images/products/ring-amore.webp' },
+  { id: 'aurora', name: 'Aurora', category: 'Anillos de Compromiso', price: '$4.100.000',
+    desc: 'Solitario clásico en oro blanco 18k con esmeralda colombiana talla redonda.',
+    img: 'assets/images/products/ring-aurora.webp' },
+  { id: 'elegance', name: 'Elegance', category: 'Anillos de Compromiso', price: '$6.800.000',
+    desc: 'Esmeralda colombiana talla pera con halo de diamantes, en oro blanco 18k.',
+    img: 'assets/images/products/ring-elegance.webp' },
+  { id: 'imperial', name: 'Imperial', category: 'Anillos de Compromiso', price: '$8.900.000',
+    desc: 'Esmeralda talla esmeralda con banda entrelazada de diamantes, en oro blanco 18k.',
+    img: 'assets/images/products/ring-imperial.webp' },
+  { id: 'isabela', name: 'Isabela', category: 'Anillos de Compromiso', price: '$5.900.000',
+    desc: 'Tres esmeraldas talla redonda con pavé de diamantes, en oro amarillo 18k.',
+    img: 'assets/images/products/ring-isabela.webp' },
+  { id: 'legacy', name: 'Legacy', category: 'Anillos de Compromiso', price: '$5.400.000',
+    desc: 'Esmeralda ovalada con banda partida y pavé de diamantes, en oro blanco 18k.',
+    img: 'assets/images/products/ring-legacy.webp' },
+  { id: 'luna', name: 'Luna', category: 'Anillos de Compromiso', price: '$5.600.000',
+    desc: 'Esmeralda ovalada de talla limpia con banda de diamantes, en oro blanco 18k.',
+    img: 'assets/images/products/ring-luna.webp' },
+  { id: 'perla', name: 'Perla', category: 'Anillos de Compromiso', price: '$4.700.000',
+    desc: 'Esmeralda ovalada engastada en bisel, con acentos de diamante, en oro rosa 18k.',
+    img: 'assets/images/products/ring-perla.webp' },
+  { id: 'victoria', name: 'Victoria', category: 'Anillos de Compromiso', price: '$9.500.000',
+    desc: 'Esmeralda talla esmeralda con doble halo de diamantes, en oro amarillo 18k.',
+    img: 'assets/images/products/ring-victoria.webp' },
+
+  // Argollas de Matrimonio
+  { id: 'armony', name: 'Armony', category: 'Argollas de Matrimonio', price: '$3.200.000',
+    desc: 'Par de argollas en platino, acabado mate, elegancia atemporal.',
+    img: 'assets/images/products/wedding-band-armony.webp' },
+  { id: 'eternal', name: 'Eternal', category: 'Argollas de Matrimonio', price: '$2.800.000',
+    desc: 'Par de argollas en oro amarillo 18k pulido, diseño clásico.',
+    img: 'assets/images/products/wedding-band-eternal.webp' },
+  { id: 'infinity', name: 'Infinity', category: 'Argollas de Matrimonio', price: '$6.500.000',
+    desc: 'Par de argollas con motivo infinito en pavé de diamantes, oro 18k.',
+    img: 'assets/images/products/wedding-band-infinity.webp' },
+  { id: 'signature', name: 'Signature', category: 'Argollas de Matrimonio', price: '$3.400.000',
+    desc: 'Par de argollas en oro rosa 18k, acabado mate.',
+    img: 'assets/images/products/wedding-band-signature.webp' },
+
+  // Anillos de Grado
+  { id: 'excellence', name: 'Excellence', category: 'Anillos de Grado', price: '$2.100.000',
+    desc: 'Anillo de grado clásico en oro, con escudo universitario personalizable.',
+    img: 'assets/images/products/class-ring-excellence.webp' },
+  { id: 'prestige', name: 'Prestige', category: 'Anillos de Grado', price: '$2.900.000',
+    desc: 'Anillo de grado contemporáneo con acentos de esmeralda, en oro blanco 18k.',
+    img: 'assets/images/products/class-ring-prestige.webp' },
+  { id: 'victory', name: 'Victory', category: 'Anillos de Grado', price: '$2.300.000',
+    desc: 'Anillo de grado en oro con escudo grabado y año de promoción.',
+    img: 'assets/images/products/class-ring-victory.webp' },
+
+  // Esmeraldas Colombianas
+  { id: 'esmerald', name: 'Esmerald', category: 'Esmeraldas Colombianas', price: '$5.100.000',
+    desc: 'Colgante de esmeralda colombiana con halo de diamantes, en oro blanco 18k.',
+    img: 'assets/images/products/necklace-esmerald.webp' },
+  { id: 'muzo', name: 'Muzo', category: 'Esmeraldas Colombianas', price: '$12.500.000',
+    desc: 'Pulsera de esmeraldas colombianas talla esmeralda, oro blanco con diamantes.',
+    img: 'assets/images/products/bracelet-muzo.webp' },
+  { id: 'verde-real', name: 'Verde Real', category: 'Esmeraldas Colombianas', price: '$4.600.000',
+    desc: 'Aretes colgantes de esmeralda con halo de diamantes, en oro amarillo 18k.',
+    img: 'assets/images/products/earrings-verde-real.webp' },
+
+  // Alta Joyería
+  { id: 'magestic', name: 'Magestic', category: 'Alta Joyería', price: '$45.000.000',
+    desc: 'Collar de alta joyería con esmeraldas y diamantes engastados a mano, oro 18k.',
+    img: 'assets/images/products/necklace-magestic.webp' },
+  { id: 'queen', name: 'Queen', category: 'Alta Joyería', price: '$18.500.000',
+    desc: 'Anillo statement con esmeralda cojín y halo escalonado de diamantes.',
+    img: 'assets/images/products/ring-queen.webp' },
+
+  // Joyería en Oro
+  { id: 'gold-escence', name: 'Gold Escence', category: 'Joyería en Oro', price: '$1.850.000',
+    desc: 'Pulsera de cadena en oro 18k, diseño minimalista atemporal.',
+    img: 'assets/images/products/bracelet-gold-escence.webp' },
+  { id: 'gold-prestige', name: 'Gold Prestige', category: 'Joyería en Oro', price: '$2.400.000',
+    desc: 'Pulsera de eslabones en oro 18k, presencia audaz y moderna.',
+    img: 'assets/images/products/bracelet-gold-prestige.webp' },
+
+  // Joyería en Plata
+  { id: 'silver-elite', name: 'Silver Elite', category: 'Joyería en Plata', price: '$680.000',
+    desc: 'Anillo escultural en plata, líneas fluidas y minimalistas.',
+    img: 'assets/images/products/ring-silver-elite.webp' },
+  { id: 'silver-signature', name: 'Silver Signature', category: 'Joyería en Plata', price: '$890.000',
+    desc: 'Pulsera de eslabones en plata, acabado pulido a espejo.',
+    img: 'assets/images/products/bracelet-silver-signature.webp' },
+
+  // Regalos Especiales
+  { id: 'bella', name: 'Bella', category: 'Regalos Especiales', price: '$1.950.000',
+    desc: 'Aretes de perla cultivada con capuchón de diamantes, en oro amarillo 18k.',
+    img: 'assets/images/products/earrings-bella.webp' },
+  { id: 'forever', name: 'Forever', category: 'Regalos Especiales', price: '$3.100.000',
+    desc: 'Colgante de corazón abierto en pavé de diamantes, en oro blanco 18k.',
+    img: 'assets/images/products/necklace-forever.webp' }
 ];
 
 /* ---------- fotografía de catálogo (placeholders premium, no inventario real) ---------- */
@@ -65,21 +154,40 @@ function openProduct(id) {
   goTo('producto');
 }
 
-/* ---------- construir colección ---------- */
+/* ---------- construir colección (agrupada por colección) ---------- */
 function renderGrid() {
-  var grid = document.getElementById('product-grid');
-  PRODUCTS.forEach(function (p) {
-    var card = document.createElement('article');
-    card.className = 'product-card';
-    card.innerHTML =
-      '<div class="product-photo-sm">' + jewelImg(p, 'photo-img-sm') + '</div>' +
-      '<div class="product-copy">' +
-        '<p class="p-name">' + p.name + '</p>' +
-        '<p class="p-price">' + p.price + '</p>' +
-        '<span class="p-btn">Ver Detalle <span class="p-btn-arrow">&#8594;</span></span>' +
-      '</div>';
-    card.addEventListener('click', function () { openProduct(p.id); });
-    grid.appendChild(card);
+  var container = document.getElementById('collections-list');
+  COLLECTIONS.forEach(function (collectionName) {
+    var items = PRODUCTS.filter(function (p) { return p.category === collectionName; });
+    if (!items.length) return;
+
+    var block = document.createElement('section');
+    block.className = 'collection-block';
+
+    var heading = document.createElement('h3');
+    heading.className = 'collection-heading';
+    heading.textContent = collectionName;
+    block.appendChild(heading);
+
+    var grid = document.createElement('div');
+    grid.className = 'product-grid';
+
+    items.forEach(function (p) {
+      var card = document.createElement('article');
+      card.className = 'product-card';
+      card.innerHTML =
+        '<div class="product-photo-sm">' + jewelImg(p, 'photo-img-sm') + '</div>' +
+        '<div class="product-copy">' +
+          '<p class="p-name">' + p.name + '</p>' +
+          '<p class="p-price">' + p.price + '</p>' +
+          '<span class="p-btn">Ver Detalle <span class="p-btn-arrow">&#8594;</span></span>' +
+        '</div>';
+      card.addEventListener('click', function () { openProduct(p.id); });
+      grid.appendChild(card);
+    });
+
+    block.appendChild(grid);
+    container.appendChild(block);
   });
 }
 
@@ -88,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function () {
   renderGrid();
   document.getElementById('hero-visual').innerHTML =
     '<img class="photo-img" src="' + HERO_IMAGE + '" alt="Los Andes Joyería" loading="eager">';
-  if (PRODUCTS.length) populateProduct(PRODUCTS[3].id); /* precarga collar destacado sin navegar */
+  populateProduct('victoria'); /* precarga una pieza destacada sin navegar */
   goTo('home');
 
   document.querySelectorAll('[data-nav]').forEach(function (el) {
