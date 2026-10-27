@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Los Andes Joyería · Creamos tu Joya</title>
 <meta name="description" content="Los Andes Joyería — Esmeraldas colombianas. Creamos tu joya.">
-<meta name="theme-color" content="#F8F9F8">
+<meta name="theme-color" content="#FAF7F0">
 <link rel="icon" href="assets/logos/losandes-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,8 +18,8 @@
 
 <header class="site-header">
   <div class="header-inner">
-    <a class="brand" href="#" data-nav="home">
-      <img src="assets/logos/losandes-icon.webp" alt="Los Andes Joyería" class="brand-logo">
+    <a class="brand" href="#/" data-nav="home" aria-label="Los Andes Joyería, ir al inicio">
+      <span class="logo-crop brand-logo"><img src="RECURSOS%20GR%C3%81FICOS/LOGO.png" alt="" width="1254" height="1254"></span>
       <span class="brand-name">Los Andes</span>
     </a>
     <div class="header-right">
@@ -28,8 +28,8 @@
         <button class="top-nav-link" data-nav="coleccion">Colección</button>
         <button class="top-nav-link" data-nav="contacto">Contacto</button>
       </nav>
-      <button class="eva-trigger" id="eva-trigger">
-        <span class="eva-trigger-icon">💎</span> EVA
+      <button class="eva-trigger" id="eva-trigger" aria-haspopup="dialog" aria-label="Abrir EVA, asesora virtual">
+        <span class="eva-trigger-icon" aria-hidden="true">💎</span> EVA
       </button>
     </div>
   </div>
@@ -40,7 +40,7 @@
   <div class="eva-modal" role="dialog" aria-modal="true" aria-labelledby="eva-name">
     <button class="eva-close" id="eva-close" aria-label="Cerrar">&times;</button>
 
-    <div class="eva-badge">💎</div>
+    <div class="eva-badge" aria-hidden="true">💎</div>
     <p class="eva-hello">Hola.</p>
     <h2 class="eva-name" id="eva-name">Soy EVA</h2>
     <p class="eva-role">Asesora Virtual de Los Andes Joyería</p>
@@ -58,6 +58,7 @@
   <section class="view active-view" id="view-home" data-view="home">
     <div class="hero">
       <div class="hero-copy">
+        <div class="hero-logo"><span class="logo-crop"><img src="RECURSOS%20GR%C3%81FICOS/LOGO.png" alt="Los Andes Joyería — Esmeraldas Colombianas" width="1254" height="1254" fetchpriority="high"></span></div>
         <p class="hero-eyebrow">Esmeraldas Colombianas</p>
         <h1 class="hero-title">Creamos<br>tu Joya</h1>
         <p class="hero-sub">Piezas en oro con esmeraldas certificadas de origen colombiano, diseñadas para durar toda una vida.</p>
@@ -75,7 +76,21 @@
       <span>Diseño a la Medida</span>
     </div>
 
+    <!-- Joyas destacadas: se rellena desde PRODUCTS (js/app.js · FEATURED_IDS) -->
+    <section class="featured" aria-labelledby="featured-title">
+      <div class="featured-intro">
+        <p class="eyebrow">Selección Los Andes</p>
+        <h2 class="featured-title" id="featured-title">Joyas destacadas</h2>
+        <span class="gold-rule" aria-hidden="true"></span>
+      </div>
+      <div class="product-grid featured-grid" id="featured-grid"></div>
+      <div class="featured-more">
+        <button class="btn btn-outline" data-nav="coleccion">Ver toda la colección</button>
+      </div>
+    </section>
+
     <div class="moments">
+      <p class="eyebrow moments-eyebrow">Para cada ocasión</p>
       <h2 class="moments-title">Encuentra la joya perfecta<br>para tu momento</h2>
 
       <div class="moments-row">
@@ -148,7 +163,7 @@
     <!-- Detalle de una colección (oculto por defecto) -->
     <div id="collection-detail" hidden>
       <button class="back-link" id="collection-back">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
         Colecciones
       </button>
       <div class="section-intro collection-intro">
@@ -163,7 +178,7 @@
   <!-- ============ PRODUCTO ============ -->
   <section class="view" id="view-producto" data-view="producto">
     <button class="back-link" id="product-back">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
       Colección
     </button>
     <div class="product-detail" id="product-detail">
@@ -191,15 +206,15 @@
     <div class="contact-layout">
       <div class="contact-info">
         <a class="contact-row" href="https://wa.me/573132091591" target="_blank" rel="noopener">
-          <span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17.6 6.3A8.9 8.9 0 0 0 3.1 17l-1.1 4 4.1-1.1A8.9 8.9 0 1 0 17.6 6.3z"/></svg></span>
+          <span class="contact-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17.6 6.3A8.9 8.9 0 0 0 3.1 17l-1.1 4 4.1-1.1A8.9 8.9 0 1 0 17.6 6.3z"/></svg></span>
           <span><strong>WhatsApp</strong><small>313 209 1591</small></span>
         </a>
         <div class="contact-row">
-          <span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+          <span class="contact-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
           <span><strong>Dirección</strong><small>Calle 12 # 5-83 Local 110, C.C. La Esmeralda, Bogotá</small></span>
         </div>
         <div class="contact-row">
-          <span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+          <span class="contact-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
           <span><strong>Horario</strong><small>Lun–Sáb 9:00am–7:00pm · Dom 10:00am–3:00pm</small></span>
         </div>
 
@@ -228,15 +243,15 @@
 
 <nav class="bottom-nav" aria-label="Navegación móvil">
   <button class="bottom-nav-link active" data-nav="home">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5L12 4l8 7.5"/><path d="M6 10v9h12v-9"/></svg>
+    <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5L12 4l8 7.5"/><path d="M6 10v9h12v-9"/></svg>
     Inicio
   </button>
   <button class="bottom-nav-link" data-nav="coleccion">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="7" height="7" rx="1.2"/><rect x="13" y="4" width="7" height="7" rx="1.2"/><rect x="4" y="13" width="7" height="7" rx="1.2"/><rect x="13" y="13" width="7" height="7" rx="1.2"/></svg>
+    <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="7" height="7" rx="1.2"/><rect x="13" y="4" width="7" height="7" rx="1.2"/><rect x="4" y="13" width="7" height="7" rx="1.2"/><rect x="13" y="13" width="7" height="7" rx="1.2"/></svg>
     Colección
   </button>
   <button class="bottom-nav-link" data-nav="contacto">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 01-12.9 7.3L3 20l1.3-5A8.5 8.5 0 1121 11.5z"/></svg>
+    <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 01-12.9 7.3L3 20l1.3-5A8.5 8.5 0 1121 11.5z"/></svg>
     Contacto
   </button>
 </nav>

@@ -8,6 +8,9 @@ var WHATSAPP_NUMBER = '573132091591';
 /* Imagen destacada de Inicio — fotografía oficial de la biblioteca premium. */
 var HERO_IMAGE = 'assets/images/products/ring-victoria.webp';
 
+/* Joyas destacadas del Home — ids de PRODUCTS (no se duplican datos). */
+var FEATURED_IDS = ['victoria', 'queen', 'magestic', 'muzo', 'imperial', 'verde-real'];
+
 /* Servicios — vista Colección, después del índice de colecciones. */
 var SERVICES = [
   { icon: '💍', name: 'Diseño Personalizado',
@@ -192,9 +195,106 @@ function goTo(view) {
     el.classList.toggle('active-view', el.dataset.view === view);
   });
   document.querySelectorAll('[data-nav]').forEach(function (el) {
-    el.classList.toggle('active', el.dataset.nav === view);
+    var on = el.dataset.nav === view;
+    el.classList.toggle('active', on);
+    if (el.matches('button, a')) {
+      if (on) el.setAttribute('aria-current', 'page'); else el.removeAttribute('aria-current');
+    }
   });
   window.scrollTo(0, 0);
+}
+
+/* ---------- router (hash) ----------
+   #/  ·  #/coleccion  ·  #/coleccion/<slug>  ·  #/producto/<id>  ·  #/contacto
+   El slug se deriva del nombre de la colección; no requiere cambiar COLLECTIONS. */
+var BASE_TITLE = 'Los Andes Joyería · Creamos tu Joya';
+var routerReady = false;   /* false durante el primer render: no se mueve el foco */
+var pendingFocusId = null; /* foco específico para la próxima navegación */
+
+function slugify(s) {
+  return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
+function collectionHash(name) { return '#/coleccion/' + slugify(name); }
+function productHash(id) { return '#/producto/' + encodeURIComponent(id); }
+
+function parseRoute() {
+  var parts = location.hash.replace(/^#\/?/, '').split('/').filter(Boolean).map(function (s) {
+    try { return decodeURIComponent(s); } catch (e) { return s; }
+  });
+  return { view: parts[0] || 'home', arg: parts[1] || null };
+}
+
+function navigate(hash) {
+  if (location.hash === hash || (hash === '#/' && (location.hash === '' || location.hash === '#'))) {
+    renderRoute(); /* misma ruta: no hay hashchange, solo reaplicar (vuelve arriba) */
+  } else {
+    location.hash = hash;
+  }
+}
+
+function setTitle(part) {
+  document.title = part ? part + ' · Los Andes Joyería' : BASE_TITLE;
+}
+
+function renderRoute() {
+  var r = parseRoute();
+  var heading, title = null;
+
+  if (r.view === 'coleccion') {
+    goTo('coleccion');
+    var info = r.arg && COLLECTIONS.find(function (c) { return slugify(c.name) === r.arg; });
+    if (info) {
+      openCollection(info.name);
+      heading = document.getElementById('cd-title');
+      title = info.name;
+    } else {
+      showCollectionsIndex();
+      heading = document.querySelector('#collections-index .section-title');
+      title = 'Colección';
+    }
+  } else if (r.view === 'producto' && PRODUCTS.some(function (x) { return x.id === r.arg; })) {
+    var p = PRODUCTS.find(function (x) { return x.id === r.arg; });
+    populateProduct(p.id);
+    currentCollection = p.category; /* el botón "Colección" regresa a su colección */
+    goTo('producto');
+    heading = document.getElementById('pd-name');
+    title = p.name;
+  } else if (r.view === 'producto') {
+    goTo('coleccion'); /* pieza inexistente */
+    showCollectionsIndex();
+    heading = document.querySelector('#collections-index .section-title');
+    title = 'Colección';
+  } else if (r.view === 'contacto') {
+    goTo('contacto');
+    heading = document.querySelector('#view-contacto .section-title');
+    title = 'Contacto';
+  } else {
+    goTo('home'); /* '' y rutas desconocidas */
+    heading = document.querySelector('.hero-title');
+  }
+
+  setTitle(title);
+
+  if (routerReady) {
+    var target = (pendingFocusId && document.getElementById(pendingFocusId)) || heading;
+    pendingFocusId = null;
+    if (target) {
+      if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: target !== heading });
+    }
+  }
+}
+
+/* Tarjeta clicable → enlace accesible (foco, Enter, nombre accesible). */
+function makeLinkCard(el, label) {
+  el.setAttribute('role', 'link');
+  el.setAttribute('tabindex', '0');
+  el.setAttribute('aria-label', label);
+  el.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && e.target === el) { e.preventDefault(); el.click(); }
+  });
 }
 
 function populateProduct(id) {
@@ -212,8 +312,7 @@ function populateProduct(id) {
 }
 
 function openProduct(id) {
-  populateProduct(id);
-  goTo('producto');
+  navigate(productHash(id));
 }
 
 /* ---------- índice de colecciones ---------- */
@@ -227,7 +326,8 @@ function renderCollectionsIndex() {
       '<p class="collection-name">' + c.title + '</p>' +
       '<p class="collection-desc">' + c.desc + '</p>' +
       '<span class="collection-cta">Explorar Colección <span class="collection-arrow">→</span></span>';
-    card.addEventListener('click', function () { openCollection(c.name); });
+    card.addEventListener('click', function () { navigate(collectionHash(c.name)); });
+    makeLinkCard(card, 'Explorar colección ' + c.name);
     grid.appendChild(card);
   });
 }
@@ -274,30 +374,61 @@ function renderEvaOptions() {
     var btn = document.createElement('button');
     btn.className = 'eva-option';
     btn.innerHTML =
-      '<span class="eva-option-icon">' + o.icon + '</span>' +
+      '<span class="eva-option-icon" aria-hidden="true">' + o.icon + '</span>' +
       '<span class="eva-option-label">' + o.label + '</span>' +
-      '<span class="eva-option-arrow">→</span>';
+      '<span class="eva-option-arrow" aria-hidden="true">→</span>';
     btn.addEventListener('click', function () {
-      closeEva();
-      goTo('coleccion');
-      openCollection(o.collection);
+      closeEva(false); /* el router mueve el foco a la colección */
+      navigate(collectionHash(o.collection));
     });
     wrap.appendChild(btn);
   });
 }
 
+/* Contenido de la página que queda inerte mientras EVA está abierta. */
+var EVA_BACKDROP = ['.site-header', 'main', '.bottom-nav'];
+var evaOpener = null;
+var evaCloseTimer = null;
+
+function setBackdropInert(on) {
+  EVA_BACKDROP.forEach(function (sel) {
+    var el = document.querySelector(sel);
+    if (el) el.inert = on;
+  });
+}
+
 function openEva() {
   var overlay = document.getElementById('eva-overlay');
+  clearTimeout(evaCloseTimer);
+  evaOpener = document.activeElement;
   overlay.hidden = false;
   requestAnimationFrame(function () { overlay.classList.add('active'); });
   document.body.style.overflow = 'hidden';
+  setBackdropInert(true);
+  document.getElementById('eva-close').focus();
 }
 
-function closeEva() {
+function closeEva(restoreFocus) {
   var overlay = document.getElementById('eva-overlay');
+  if (overlay.hidden) return;
   overlay.classList.remove('active');
   document.body.style.overflow = '';
-  setTimeout(function () { overlay.hidden = true; }, 300);
+  setBackdropInert(false);
+  clearTimeout(evaCloseTimer);
+  evaCloseTimer = setTimeout(function () { overlay.hidden = true; }, 300);
+  if (restoreFocus !== false && evaOpener && document.contains(evaOpener)) evaOpener.focus();
+  evaOpener = null;
+}
+
+/* Mantiene Tab dentro del diálogo de EVA. */
+function trapEvaFocus(e) {
+  var overlay = document.getElementById('eva-overlay');
+  if (e.key !== 'Tab' || overlay.hidden) return;
+  var items = overlay.querySelectorAll('button:not([disabled])');
+  if (!items.length) return;
+  var first = items[0], last = items[items.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
 }
 
 function renderProductCards(grid, items) {
@@ -313,8 +444,16 @@ function renderProductCards(grid, items) {
         '<span class="p-btn">Ver Detalle <span class="p-btn-arrow">&#8594;</span></span>' +
       '</div>';
     card.addEventListener('click', function () { openProduct(p.id); });
+    makeLinkCard(card, 'Ver detalle de ' + p.name + ', ' + p.price);
     grid.appendChild(card);
   });
+}
+
+function renderFeatured() {
+  var items = FEATURED_IDS.map(function (id) {
+    return PRODUCTS.find(function (p) { return p.id === id; });
+  }).filter(Boolean);
+  renderProductCards(document.getElementById('featured-grid'), items);
 }
 
 function showCollectionsIndex() {
@@ -340,46 +479,42 @@ document.addEventListener('DOMContentLoaded', function () {
   renderCollectionsIndex();
   renderServices();
   renderBenefits();
+  renderFeatured();
   renderEvaOptions();
   document.getElementById('hero-visual').innerHTML =
     '<img class="photo-img" src="' + HERO_IMAGE + '" alt="Los Andes Joyería" loading="eager">';
-  populateProduct('victoria'); /* precarga una pieza destacada sin navegar */
-  goTo('home');
-
   document.querySelectorAll('[data-nav]').forEach(function (el) {
+    var target = el.dataset.nav;
+    var hash = target === 'home' ? '#/'
+      : el.dataset.collection ? collectionHash(el.dataset.collection)
+      : '#/' + target;
+    if (el.classList.contains('moment-card')) {
+      makeLinkCard(el, 'Explorar ' + el.querySelector('.moment-name').textContent);
+    }
     el.addEventListener('click', function (e) {
       e.preventDefault();
-      var target = el.dataset.nav;
-      goTo(target);
-      if (target === 'coleccion') {
-        if (el.dataset.collection) {
-          openCollection(el.dataset.collection);
-        } else {
-          showCollectionsIndex();
-        }
-      }
+      navigate(hash);
     });
   });
 
+  window.addEventListener('hashchange', renderRoute);
+  renderRoute();     /* respeta el hash de entrada (enlaces directos) */
+  routerReady = true;
+
   document.getElementById('collection-back').addEventListener('click', function () {
-    showCollectionsIndex();
+    navigate('#/coleccion');
   });
 
   document.getElementById('product-back').addEventListener('click', function () {
-    goTo('coleccion');
-    if (currentCollection) {
-      openCollection(currentCollection);
-    } else {
-      showCollectionsIndex();
-    }
+    navigate(currentCollection ? collectionHash(currentCollection) : '#/coleccion');
   });
 
   document.getElementById('pd-info').addEventListener('click', function () {
-    goTo('contacto');
     var product = this.dataset.product;
     var msg = document.getElementById('cf-mensaje');
     if (product) msg.value = 'Quisiera más información sobre: ' + product;
-    document.getElementById('cf-nombre').focus();
+    pendingFocusId = 'cf-nombre';
+    navigate('#/contacto');
   });
 
   document.getElementById('contact-form').addEventListener('submit', function (e) {
@@ -397,5 +532,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && !document.getElementById('eva-overlay').hidden) closeEva();
+    trapEvaFocus(e);
   });
 });
