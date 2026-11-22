@@ -5,13 +5,68 @@
 
 var WHATSAPP_NUMBER = '573132091591';
 
-/* Imagen destacada de Inicio — fotografía oficial de la biblioteca premium. */
-var HERO_IMAGE = 'assets/images/products/ring-victoria.webp';
-
 /* Joyas destacadas del Home — ids de PRODUCTS (no se duplican datos). */
 var FEATURED_IDS = ['victoria', 'queen', 'magestic', 'muzo', 'imperial', 'verde-real'];
 
+/* Galería fotográfica real — Anillo Victoria. Las imágenes son copias de los originales. */
+var VICTORIA_GALLERY = [
+  { src: 'assets/images/products/victoria-gallery/victoria-principal.png', alt: 'Anillo Victoria, vista frontal' },
+  { src: 'assets/images/products/victoria-gallery/victoria-angulo-1.png', alt: 'Anillo Victoria, vista inclinada' },
+  { src: 'assets/images/products/victoria-gallery/victoria-angulo-2.png', alt: 'Anillo Victoria, segunda vista inclinada con baguettes' },
+  { src: 'assets/images/products/victoria-gallery/victoria-modelo.png', alt: 'Modelo luciendo el Anillo Victoria' }
+];
+
 /* Servicios — vista Colección, después del índice de colecciones. */
+var MAJESTIC_GALLERY = [
+  { src: 'assets/images/products/majestic/majestic-anillo.png', alt: 'Anillo Majestic lucido por la modelo' },
+  { src: 'assets/images/products/majestic/majestic-1.png', alt: 'Anillo Majestic, plano fotográfico 1' },
+  { src: 'assets/images/products/majestic/majestic-2.png', alt: 'Anillo Majestic, plano fotográfico 2' },
+  { src: 'assets/images/products/majestic/majestic-3.png', alt: 'Anillo Majestic, plano fotográfico 3' }
+];
+
+/* Galería fotográfica real — Anillo ISABELLA (plata 925). Copias de los originales en
+   RECURSOS GRÁFICOS/COLECCIONES EN PLATA ANILLOS DE MUJER 2. */
+var ISABELLA_GALLERY = [
+  { src: 'assets/images/products/isabella/isabella-principal.png', alt: 'Anillo ISABELLA, vista frontal' },
+  { src: 'assets/images/products/isabella/isabella-angulo-1.png', alt: 'Anillo ISABELLA, vista de tres cuartos' },
+  { src: 'assets/images/products/isabella/isabella-angulo-2.png', alt: 'Anillo ISABELLA, vista lateral' },
+  { src: 'assets/images/products/isabella/isabella-modelo.png', alt: 'Anillo ISABELLA en la mano de una modelo' }
+];
+
+/* Galería fotográfica real — Anillo DESTELLO (plata). Copias en assets/images/products/destello. */
+var DESTELLO_GALLERY = [
+  { src: 'assets/images/products/destello/destello-portada.png', alt: 'Anillo DESTELLO, vista frontal' },
+  { src: 'assets/images/products/destello/destello-angulo-1.png', alt: 'Anillo DESTELLO, primer ángulo' },
+  { src: 'assets/images/products/destello/destello-angulo-2.png', alt: 'Anillo DESTELLO, segundo ángulo' },
+  { src: 'assets/images/products/destello/destello-modelo.png', alt: 'Anillo DESTELLO en la mano de una modelo' }
+];
+
+/* Galería fotográfica real — Anillo SILUETA (plata 925). Copias normalizadas de
+   RECURSOS GRÁFICOS/COLECCIONES EN PLATA ANILLOS DE MUJER 4. */
+var SILUETA_GALLERY = [
+  { src: 'assets/images/products/silueta/silueta-portada.png', alt: 'Anillo SILUETA, vista frontal' },
+  { src: 'assets/images/products/silueta/silueta-angulo-1.png', alt: 'Anillo SILUETA, primer ángulo' },
+  { src: 'assets/images/products/silueta/silueta-angulo-2.png', alt: 'Anillo SILUETA, segundo ángulo' },
+  { src: 'assets/images/products/silueta/silueta-modelo.png', alt: 'Anillo SILUETA en la mano de una modelo' }
+];
+
+/* Galería fotográfica real — Anillo ESENCIA (plata). Copias normalizadas de
+   RECURSOS GRÁFICOS/COLECCIONES EN PLATA ANILLOS DE MUJER 6. */
+var ESENCIA_GALLERY = [
+  { src: 'assets/images/products/esencia/esencia-portada.png', alt: 'Anillo ESENCIA, vista frontal' },
+  { src: 'assets/images/products/esencia/esencia-angulo-1.png', alt: 'Anillo ESENCIA, vista adicional' },
+  { src: 'assets/images/products/esencia/esencia-modelo.png', alt: 'Anillo ESENCIA en la mano de una modelo' }
+];
+
+/* Galería fotográfica real — Anillo ARMONÍA (plata 925). Copias normalizadas de
+   RECURSOS GRÁFICOS/COLECCIONES EN PLATA ANILLOS DE MUJER 7. */
+var ARMONIA_GALLERY = [
+  { src: 'assets/images/products/armonia/armonia-portada.png', alt: 'Anillo ARMONÍA, vista frontal' },
+  { src: 'assets/images/products/armonia/armonia-angulo-1.png', alt: 'Anillo ARMONÍA, primer ángulo' },
+  { src: 'assets/images/products/armonia/armonia-angulo-2.png', alt: 'Anillo ARMONÍA, segundo ángulo' },
+  { src: 'assets/images/products/armonia/armonia-modelo.png', alt: 'Anillo ARMONÍA en la mano de una modelo' }
+];
+
 var SERVICES = [
   { icon: '💍', name: 'Diseño Personalizado',
     desc: 'Creamos joyas únicas diseñadas exclusivamente para cada cliente.' },
@@ -80,7 +135,10 @@ var COLLECTIONS = [
     img: 'assets/images/products/bracelet-silver-signature.webp' },
   { name: 'Regalos Especiales', title: '🎁 Regalos Especiales',
     desc: 'Joyas pensadas para sorprender y convertir cada ocasión en un recuerdo inolvidable.',
-    img: 'assets/images/products/necklace-forever.webp' }
+    img: 'assets/images/products/necklace-forever.webp' },
+  { name: 'Anillos de Mujer en Plata', title: 'Anillos de Mujer en Plata',
+    desc: 'Diseños femeninos en plata. Descubre las piezas de esta colección.',
+    img: 'assets/images/products/anillos-mujer-plata/anillo-mujer-1.png' }
 ];
 
 var currentCollection = null;
@@ -113,7 +171,7 @@ var PRODUCTS = [
     img: 'assets/images/products/ring-perla.webp' },
   { id: 'victoria', name: 'Victoria', category: 'Anillos de Compromiso', price: '$9.500.000',
     desc: 'Esmeralda talla esmeralda con doble halo de diamantes, en oro amarillo 18k.',
-    img: 'assets/images/products/ring-victoria.webp' },
+    img: 'assets/images/products/victoria-gallery/victoria-principal.png' },
 
   // Argollas de Matrimonio
   { id: 'armony', name: 'Armony', category: 'Argollas de Matrimonio', price: '$3.200.000',
@@ -155,9 +213,10 @@ var PRODUCTS = [
   { id: 'magestic', name: 'Magestic', category: 'Alta Joyería', price: '$45.000.000',
     desc: 'Collar de alta joyería con esmeraldas y diamantes engastados a mano, oro 18k.',
     img: 'assets/images/products/necklace-magestic.webp' },
-  { id: 'queen', name: 'Queen', category: 'Alta Joyería', price: '$18.500.000',
+  { id: 'queen', name: 'Majestic', category: 'Joyería en Plata', price: '$18.500.000',
+    cardImg: 'assets/images/products/majestic/majestic-card.jfif',
     desc: 'Anillo statement con esmeralda cojín y halo escalonado de diamantes.',
-    img: 'assets/images/products/ring-queen.webp' },
+    img: 'assets/images/products/majestic/majestic-anillo.png' },
 
   // Joyería en Oro
   { id: 'gold-escence', name: 'Gold Escence', category: 'Joyería en Oro', price: '$1.850.000',
@@ -181,7 +240,80 @@ var PRODUCTS = [
     img: 'assets/images/products/earrings-bella.webp' },
   { id: 'forever', name: 'Forever', category: 'Regalos Especiales', price: '$3.100.000',
     desc: 'Colgante de corazón abierto en pavé de diamantes, en oro blanco 18k.',
-    img: 'assets/images/products/necklace-forever.webp' }
+    img: 'assets/images/products/necklace-forever.webp' },
+  { id: 'anillo-mujer-plata-1', name: 'Anillo Mujer 1', category: 'Anillos de Mujer en Plata', price: 'Consultar precio',
+    desc: 'Pieza de la colección Anillos de Mujer en Plata. Consulta sus características y disponibilidad.',
+    img: 'assets/images/products/anillos-mujer-plata/anillo-mujer-1.png' },
+  { id: 'anillo-mujer-plata-2', name: 'Anillo Mujer 2', category: 'Anillos de Mujer en Plata', price: 'Consultar precio',
+    desc: 'Pieza de la colección Anillos de Mujer en Plata. Consulta sus características y disponibilidad.',
+    img: 'assets/images/products/anillos-mujer-plata/anillo-mujer-2.png' },
+  { id: 'anillo-mujer-plata-modelo', name: 'Anillo Mujer con Modelo', category: 'Anillos de Mujer en Plata', price: 'Consultar precio',
+    desc: 'Pieza de la colección Anillos de Mujer en Plata presentada con modelo.',
+    img: 'assets/images/products/anillos-mujer-plata/anillo-mujer-modelo.png' },
+  /* Producto independiente de 'isabela' (oro 18k). Datos comerciales confirmados por el cliente. */
+  { id: 'isabella-plata', name: 'ISABELLA', category: 'Anillos de Mujer en Plata', price: '$480.000',
+    desc: 'Anillo en plata de diseño fino y delicado con una piedra natural de zafiro en forma de lágrima, de 5,1 × 5,2 mm.',
+    img: 'assets/images/products/isabella/isabella-principal.png',
+    gallery: ISABELLA_GALLERY,
+    availability: 'En inventario',
+    specs: [
+      ['Material', 'Plata 925'],
+      ['Acabado', 'Brillante'],
+      ['Piedra', 'Zafiro natural azul'],
+      ['Forma', 'Lágrima'],
+      ['Dimensiones', '5,1 × 5,2 mm']
+    ] },
+  { id: 'destello-plata', name: 'DESTELLO', category: 'Anillos de Mujer en Plata', price: '$1.000.000',
+    desc: 'Anillo de plata tipo solitario con piedra central de esmeralda natural colombiana de bonito color verde profundo. Diseño clásico y atemporal.',
+    img: 'assets/images/products/destello/destello-portada.png',
+    gallery: DESTELLO_GALLERY,
+    availability: 'En inventario',
+    specs: [
+      ['Material', 'Plata'],
+      ['Tipo', 'Anillo solitario'],
+      ['Piedra central', 'Esmeralda natural colombiana'],
+      ['Color', 'Verde profundo'],
+      ['Dimensiones de la piedra', '4,1 × 6,2 mm']
+    ] },
+  { id: 'silueta-plata', name: 'SILUETA', category: 'Anillos de Mujer en Plata', price: '$270.000',
+    desc: 'Fino anillo de diseño Clúster con piedra central de laboratorio color azul aguamarina y halo de circonitas blancas.',
+    img: 'assets/images/products/silueta/silueta-portada.png',
+    gallery: SILUETA_GALLERY,
+    availability: 'En inventario',
+    specs: [
+      ['Material', 'Plata de ley 925'],
+      ['Tipo', 'Anillo de diseño Clúster'],
+      ['Piedra central', 'Piedra de laboratorio, azul aguamarina'],
+      ['Halo', 'Circonitas blancas'],
+      ['Dimensión', '11,6 mm de amplitud del diseño del halo']
+    ] },
+  { id: 'esencia-plata', name: 'ESENCIA', category: 'Anillos de Mujer en Plata', price: '$1.000.000',
+    desc: 'Anillo de montura clásica con una piedra central de esmeralda natural colombiana de forma rectangular, de 5,45 × 7,32 mm, acompañado de circonitas laterales.',
+    img: 'assets/images/products/esencia/esencia-portada.png',
+    gallery: ESENCIA_GALLERY,
+    availability: 'En inventario',
+    specs: [
+      ['Material', 'Plata'],
+      ['Diseño', 'Montura clásica'],
+      ['Piedra central', 'Esmeralda natural colombiana'],
+      ['Forma', 'Rectangular'],
+      ['Dimensiones', '5,45 × 7,32 mm'],
+      ['Piedras laterales', 'Circonitas']
+    ] },
+  { id: 'armonia-plata', name: 'ARMONÍA', category: 'Anillos de Mujer en Plata', price: '$800.000',
+    desc: 'Anillo Clúster con piedra central de esmeralda natural colombiana en forma de corazón, de bonito color verde profundo, de 5,31 × 7,51 mm. Plata de ley 925 de alta pureza, diseño trabajado a mano con la experiencia y técnica de nuestros joyeros.',
+    img: 'assets/images/products/armonia/armonia-portada.png',
+    gallery: ARMONIA_GALLERY,
+    availability: 'En inventario',
+    specs: [
+      ['Material', 'Plata de ley 925 de alta pureza'],
+      ['Diseño', 'Anillo Clúster'],
+      ['Piedra central', 'Esmeralda natural colombiana'],
+      ['Forma', 'Corazón'],
+      ['Color', 'Verde profundo'],
+      ['Dimensiones', '5,31 × 7,51 mm'],
+      ['Elaboración', 'Trabajada a mano con la experiencia y técnica de nuestros joyeros']
+    ] }
 ];
 
 /* ---------- fotografía de catálogo (placeholders premium, no inventario real) ---------- */
@@ -297,14 +429,134 @@ function makeLinkCard(el, label) {
   });
 }
 
+function renderVictoriaGallery() {
+  var root = document.getElementById('product-photo');
+  var first = VICTORIA_GALLERY[0];
+  root.classList.add('has-gallery');
+  root.innerHTML =
+    '<div class="product-gallery-main">' +
+      '<img class="photo-img gallery-main-image" src="' + first.src + '" alt="' + first.alt + '" width="1254" height="1254" decoding="async">' +
+    '</div>' +
+    '<div class="product-gallery-thumbs" role="group" aria-label="Fotografías del Anillo Victoria">' +
+      VICTORIA_GALLERY.map(function (photo, index) {
+        return '<button class="product-gallery-thumb' + (index === 0 ? ' is-active' : '') + '" type="button" data-gallery-index="' + index + '" aria-label="Ver fotografía ' + (index + 1) + ': ' + photo.alt + '" aria-pressed="' + (index === 0 ? 'true' : 'false') + '">' +
+          '<img src="' + photo.src + '" alt="" loading="lazy" width="1254" height="1254">' +
+        '</button>';
+      }).join('') +
+    '</div>';
+
+  var mainImage = root.querySelector('.gallery-main-image');
+  root.querySelectorAll('.product-gallery-thumb').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var photo = VICTORIA_GALLERY[Number(button.dataset.galleryIndex)];
+      if (!photo) return;
+      mainImage.src = photo.src;
+      mainImage.alt = photo.alt;
+      root.querySelectorAll('.product-gallery-thumb').forEach(function (thumb) {
+        var active = thumb === button;
+        thumb.classList.toggle('is-active', active);
+        thumb.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+    });
+  });
+}
+
+function renderMajesticGallery() {
+  var root = document.getElementById('product-photo');
+  var first = MAJESTIC_GALLERY[0];
+  root.classList.add('has-gallery');
+  root.innerHTML =
+    '<div class="product-gallery-main">' +
+      '<img class="photo-img gallery-main-image" src="' + first.src + '" alt="' + first.alt + '" decoding="async">' +
+    '</div>' +
+    '<div class="product-gallery-thumbs" role="group" aria-label="Fotografias del Anillo Majestic">' +
+      MAJESTIC_GALLERY.map(function (photo, index) {
+        return '<button class="product-gallery-thumb' + (index === 0 ? ' is-active' : '') + '" type="button" data-gallery-index="' + index + '" aria-label="Ver fotografia ' + (index + 1) + ': ' + photo.alt + '" aria-pressed="' + (index === 0 ? 'true' : 'false') + '">' +
+          '<img src="' + photo.src + '" alt="" loading="lazy">' +
+        '</button>';
+      }).join('') +
+    '</div>';
+  var mainImage = root.querySelector('.gallery-main-image');
+  root.querySelectorAll('.product-gallery-thumb').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var photo = MAJESTIC_GALLERY[Number(button.dataset.galleryIndex)];
+      if (!photo) return;
+      mainImage.src = photo.src;
+      mainImage.alt = photo.alt;
+      root.querySelectorAll('.product-gallery-thumb').forEach(function (thumb) {
+        var active = thumb === button;
+        thumb.classList.toggle('is-active', active);
+        thumb.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+    });
+  });
+}
+
+/* Galería genérica para productos con "gallery" en PRODUCTS (mismo marcado y estilos
+   que las galerías de Victoria y Majestic). */
+function renderProductGallery(photos, label) {
+  var root = document.getElementById('product-photo');
+  root.classList.add('has-gallery');
+  root.innerHTML =
+    '<div class="product-gallery-main">' +
+      '<img class="photo-img gallery-main-image" src="' + photos[0].src + '" alt="' + photos[0].alt + '" width="1254" height="1254" decoding="async">' +
+    '</div>' +
+    '<div class="product-gallery-thumbs" role="group" aria-label="' + label + '">' +
+      photos.map(function (photo, index) {
+        return '<button class="product-gallery-thumb' + (index === 0 ? ' is-active' : '') + '" type="button" data-gallery-index="' + index + '" aria-label="Ver fotografía ' + (index + 1) + ': ' + photo.alt + '" aria-pressed="' + (index === 0 ? 'true' : 'false') + '">' +
+          '<img src="' + photo.src + '" alt="" loading="lazy" width="1254" height="1254">' +
+        '</button>';
+      }).join('') +
+    '</div>';
+
+  var mainImage = root.querySelector('.gallery-main-image');
+  root.querySelectorAll('.product-gallery-thumb').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var photo = photos[Number(button.dataset.galleryIndex)];
+      if (!photo) return;
+      mainImage.src = photo.src;
+      mainImage.alt = photo.alt;
+      root.querySelectorAll('.product-gallery-thumb').forEach(function (thumb) {
+        var active = thumb === button;
+        thumb.classList.toggle('is-active', active);
+        thumb.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+    });
+  });
+}
+
 function populateProduct(id) {
   var p = PRODUCTS.find(function (x) { return x.id === id; });
   if (!p) return;
-  document.getElementById('product-photo').innerHTML = jewelImg(p, 'photo-img');
+  var photoRoot = document.getElementById('product-photo');
+  photoRoot.classList.remove('has-gallery');
+  if (p.id === 'victoria') {
+    renderVictoriaGallery();
+  } else if (p.id === 'queen') {
+    renderMajesticGallery();
+  } else if (p.gallery && p.gallery.length) {
+    renderProductGallery(p.gallery, 'Fotografías del Anillo ' + p.name);
+  } else {
+    photoRoot.innerHTML = jewelImg(p, 'photo-img');
+  }
   document.getElementById('pd-category').textContent = p.category;
   document.getElementById('pd-name').textContent = p.name;
   document.getElementById('pd-price').textContent = p.price;
   document.getElementById('pd-desc').textContent = p.desc;
+
+  /* Disponibilidad y especificaciones: solo para productos que las declaran. */
+  var availability = document.getElementById('pd-availability');
+  availability.textContent = p.availability || '';
+  availability.hidden = !p.availability;
+  var specs = document.getElementById('pd-specs');
+  specs.innerHTML = '';
+  (p.specs || []).forEach(function (row) {
+    var wrap = document.createElement('div');
+    var dt = document.createElement('dt'); dt.textContent = row[0];
+    var dd = document.createElement('dd'); dd.textContent = row[1];
+    wrap.appendChild(dt); wrap.appendChild(dd); specs.appendChild(wrap);
+  });
+  specs.hidden = !(p.specs && p.specs.length);
 
   var waText = encodeURIComponent('Hola, me interesa la pieza "' + p.name + '" (' + p.price + '). ¿Me pueden dar más información?');
   document.getElementById('pd-whatsapp').href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + waText;
@@ -316,22 +568,77 @@ function openProduct(id) {
 }
 
 /* ---------- índice de colecciones ---------- */
-function renderCollectionsIndex() {
-  var grid = document.getElementById('collection-grid');
-  COLLECTIONS.forEach(function (c) {
-    var card = document.createElement('article');
-    card.className = 'collection-card';
-    card.innerHTML =
-      '<div class="collection-photo"><img src="' + c.img + '" alt="' + c.name + '" loading="lazy"></div>' +
-      '<p class="collection-name">' + c.title + '</p>' +
-      '<p class="collection-desc">' + c.desc + '</p>' +
-      '<span class="collection-cta">Explorar Colección <span class="collection-arrow">→</span></span>';
-    card.addEventListener('click', function () { navigate(collectionHash(c.name)); });
-    makeLinkCard(card, 'Explorar colección ' + c.name);
-    grid.appendChild(card);
-  });
+function buildCollectionCard(imgSrc, imgAlt, titleText, descText, ctaText) {
+  var card = document.createElement('article');
+  card.className = 'collection-card';
+  var photo = document.createElement('div');
+  photo.className = 'collection-photo';
+  var img = document.createElement('img');
+  img.src = imgSrc; img.alt = imgAlt; img.loading = 'lazy';
+  photo.appendChild(img);
+  var label = document.createElement('p');
+  label.className = 'collection-name'; label.textContent = titleText;
+  var desc = document.createElement('p');
+  desc.className = 'collection-desc'; desc.textContent = descText;
+  var cta = document.createElement('span');
+  cta.className = 'collection-cta'; cta.textContent = ctaText;
+  var arrow = document.createElement('span');
+  arrow.className = 'collection-arrow'; arrow.textContent = '→'; cta.appendChild(arrow);
+  card.appendChild(photo); card.appendChild(label); card.appendChild(desc); card.appendChild(cta);
+  return card;
 }
 
+function renderCollectionsIndex() {
+  var grid = document.getElementById('collection-grid');
+  grid.innerHTML = '';
+  var groups = [
+    { title: 'Colecciones en Plata', banner: 'assets/images/colecciones-en-plata.png', names: [] },
+
+    /* La primera tarjeta muestra la pieza ISABELLA. 'Anillos de Compromiso' sigue intacta en
+       COLLECTIONS/PRODUCTS y accesible desde EVA, el Home y su ruta #/coleccion/anillos-de-compromiso. */
+    { title: 'Colecciones Destacadas', names: [{ product: 'isabella-plata' }, { product: 'destello-plata' }, { product: 'silueta-plata' }, { product: 'esencia-plata' }, { product: 'armonia-plata' },'Anillos de Mujer en Plata'] },
+    { title: 'Otras Colecciones', names: ['Regalos Especiales'] }
+  ];
+  groups.forEach(function (group) {
+    var section = document.createElement('section');
+    section.className = 'catalog-collection-group';
+    var heading = document.createElement('h3');
+    heading.className = 'catalog-collection-group-title';
+    heading.textContent = group.title;
+    if (group.banner) {
+      var banner = document.createElement('img');
+      banner.className = 'catalog-group-banner';
+      banner.src = group.banner;
+      banner.alt = 'Colecciones en Plata';
+      banner.loading = 'eager';
+      banner.decoding = 'async';
+      section.appendChild(banner);
+    } else {
+      section.appendChild(heading);
+    }
+    var cards = document.createElement('div');
+    cards.className = 'catalog-group-grid';
+    group.names.forEach(function (name) {
+      var card;
+      if (typeof name === 'object' && name.product) {
+        /* Tarjeta de pieza individual: mismo componente visual, enlaza a su ficha. */
+        var p = PRODUCTS.find(function (x) { return x.id === name.product; });
+        if (!p) return;
+        card = buildCollectionCard(p.img, 'Anillo ' + p.name + ', vista frontal', p.name, p.desc, 'Ver Pieza ');
+        card.addEventListener('click', function () { navigate(productHash(p.id)); });
+        makeLinkCard(card, 'Ver pieza ' + p.name);
+      } else {
+        var item = COLLECTIONS.find(function (c) { return c.name === name; });
+        if (!item) return;
+        card = buildCollectionCard(item.img, item.name, item.title, item.desc, 'Explorar Colección ');
+        card.addEventListener('click', function () { navigate(collectionHash(item.name)); });
+        makeLinkCard(card, 'Explorar colección ' + item.name);
+      }
+      cards.appendChild(card);
+    });
+    section.appendChild(cards); grid.appendChild(section);
+  });
+}
 /* ---------- servicios ---------- */
 function renderServices() {
   var grid = document.getElementById('services-grid');
@@ -436,8 +743,11 @@ function renderProductCards(grid, items) {
   items.forEach(function (p) {
     var card = document.createElement('article');
     card.className = 'product-card';
+    var imageForCard = p.cardImg
+      ? Object.assign({}, p, { img: p.cardImg })
+      : p;
     card.innerHTML =
-      '<div class="product-photo-sm">' + jewelImg(p, 'photo-img-sm') + '</div>' +
+      '<div class="product-photo-sm">' + jewelImg(imageForCard, 'photo-img-sm') + '</div>' +
       '<div class="product-copy">' +
         '<p class="p-name">' + p.name + '</p>' +
         '<p class="p-price">' + p.price + '</p>' +
@@ -481,8 +791,6 @@ document.addEventListener('DOMContentLoaded', function () {
   renderBenefits();
   renderFeatured();
   renderEvaOptions();
-  document.getElementById('hero-visual').innerHTML =
-    '<img class="photo-img" src="' + HERO_IMAGE + '" alt="Los Andes Joyería" loading="eager">';
   document.querySelectorAll('[data-nav]').forEach(function (el) {
     var target = el.dataset.nav;
     var hash = target === 'home' ? '#/'
@@ -535,3 +843,6 @@ document.addEventListener('DOMContentLoaded', function () {
     trapEvaFocus(e);
   });
 });
+
+/* LA_MESSAGE_ROTATOR_V1 */(function(){var messages=["Bienvenidos a Joyería Los Andes. ¡Gracias por visitarnos!","Joyas de alta calidad para cada ocasión especial.","Creamos tu joya a medida, diseñada especialmente para ti.","Descubre nuestras colecciones exclusivas en plata y oro.","Esmeraldas colombianas que convierten cada joya en una pieza especial.","Servicio especializado de restauración y recuperación de joyas.","Calidad, experiencia y dedicación al servicio de tus joyas.","Estamos para ayudarte a encontrar la joya perfecta.","¿Tienes una idea especial? Con gusto te asesoramos."];function init(){if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;document.querySelectorAll(".la-message-strip").forEach(function(strip){var node=strip.querySelector(".la-message-text");if(!node)return;var index=0;window.setInterval(function(){node.classList.add("is-changing");window.setTimeout(function(){index=(index+1)%messages.length;node.textContent=messages[index];node.classList.remove("is-changing");},250);},4500);});}if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init,{once:true});}else{init();}})();
+/* LA_MESSAGE_STRIP_POSITION_V1 */(function(){var hd=false,cd=false,ob;function move(){var h=document.querySelector("#view-home .la-message-strip"),hero=document.querySelector("#view-home .hero");if(h&&hero){if(hero.nextElementSibling!==h)hero.insertAdjacentElement("afterend",h);hd=true;}var c=document.querySelector("#view-coleccion .la-message-strip"),banner=document.querySelector("#view-coleccion .catalog-group-banner");if(c&&banner){if(banner.nextElementSibling!==c)banner.insertAdjacentElement("afterend",c);cd=true;}if(hd&&cd&&ob)ob.disconnect();}function start(){move();if(!hd||!cd){ob=new MutationObserver(move);ob.observe(document.body,{childList:true,subtree:true});}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start,{once:true});else start();window.addEventListener("hashchange",move);})();

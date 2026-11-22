@@ -56,17 +56,16 @@
 
   <!-- ============ HOME ============ -->
   <section class="view active-view" id="view-home" data-view="home">
+<aside class="la-message-strip" aria-label="Información de Joyería Los Andes"><div class="la-message-strip-inner"><div class="la-message-copy"><span class="la-message-spark">✦</span><p class="la-message-text" aria-live="polite">Bienvenidos a Joyería Los Andes. Gracias por visitarnos.</p></div><a class="la-message-whatsapp" href="https://wa.me/573132091591" target="_blank" rel="noopener">WhatsApp · 313 209 1591</a></div></aside>
     <div class="hero">
-      <div class="hero-copy">
-        <div class="hero-logo"><span class="logo-crop"><img src="RECURSOS%20GR%C3%81FICOS/LOGO.png" alt="Los Andes Joyería — Esmeraldas Colombianas" width="1254" height="1254" fetchpriority="high"></span></div>
-        <p class="hero-eyebrow">Esmeraldas Colombianas</p>
-        <h1 class="hero-title">Creamos<br>tu Joya</h1>
-        <p class="hero-sub">Piezas en oro con esmeraldas certificadas de origen colombiano, diseñadas para durar toda una vida.</p>
-        <button class="btn btn-primary" data-nav="coleccion">Explorar Colección</button>
-        <p class="hero-story">Cada joya celebra un momento que merece ser recordado.</p>
-      </div>
-
-      <div class="hero-visual" id="hero-visual" aria-hidden="true"></div>
+      <a class="hero-banner-link" href="#/coleccion" data-nav="coleccion"
+         aria-label="Explorar las colecciones de Los Andes Joyería">
+        <img class="hero-banner-image"
+             src="RECURSOS%20GR%C3%81FICOS/AAA%20BANERS%20SLAIDERS/Lujo%20esmeralda%20en%20cada%20joya.png"
+             alt="Los Andes Joyería. Descubre colecciones únicas hechas a mano. Cada joya, una historia que contar. Joyas de lujo hechas a mano."
+             width="2048" height="750" fetchpriority="high" decoding="async">
+      </a>
+      <h1 class="hero-title visually-hidden">Los Andes Joyería: descubre nuestras colecciones</h1>
     </div>
 
     <div class="marquee-row" aria-hidden="true">
@@ -134,6 +133,7 @@
 
   <!-- ============ COLECCIÓN ============ -->
   <section class="view" id="view-coleccion" data-view="coleccion">
+<aside class="la-message-strip" aria-label="Información de Joyería Los Andes"><div class="la-message-strip-inner"><div class="la-message-copy"><span class="la-message-spark">✦</span><p class="la-message-text" aria-live="polite">Bienvenidos a Joyería Los Andes. Gracias por visitarnos.</p></div><a class="la-message-whatsapp" href="https://wa.me/573132091591" target="_blank" rel="noopener">WhatsApp · 313 209 1591</a></div></aside>
 
     <!-- Índice de colecciones -->
     <div id="collections-index">
@@ -188,6 +188,8 @@
         <h1 class="product-name" id="pd-name">—</h1>
         <p class="product-price" id="pd-price">—</p>
         <p class="product-desc" id="pd-desc">—</p>
+        <p class="product-availability" id="pd-availability" hidden></p>
+        <dl class="product-specs" id="pd-specs" hidden></dl>
         <div class="product-actions">
           <a class="btn btn-primary" id="pd-whatsapp" href="#" target="_blank" rel="noopener">Consultar por WhatsApp</a>
           <button class="secondary-link" id="pd-info">Solicitar Información <span class="secondary-link-arrow">→</span></button>
